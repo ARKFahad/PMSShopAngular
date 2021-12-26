@@ -12,6 +12,7 @@ import { ProductParams } from '../../models/productParams';
 import { CartService } from '../../services/cart.service';
 import { PosService } from '../../services/pos.service';
 import { ProductRequestModel } from '../../models/productRequestModel';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-catalog',
@@ -29,7 +30,8 @@ export class CatalogComponent implements OnInit {
   showImage: boolean = false;
   hasProductsLoaded: boolean = false;
   invalidCart: boolean = true;
-  constructor(private posService: PosService, private toastr: ToastrService, public cartService: CartService, public busyService: BusyService) { }
+  constructor(private posService: PosService, private toastr: ToastrService, public cartService: CartService, public busyService: BusyService,
+    private authService:AuthService) { }
 
   ngOnInit(): void {
    
@@ -37,6 +39,7 @@ export class CatalogComponent implements OnInit {
     this.productRequestModel.supplierIds = [];
     this.productRequestModel.categoryIds = [];
     this.productRequestModel.rowsPerPage = 60;
+    this.productRequestModel.branchId=this.authService.getBranchId
     this.getProducts();
     this.getBrands('');
     this.getCategories('');
@@ -101,9 +104,7 @@ export class CatalogComponent implements OnInit {
   public doFilter(): void {
     this.getProducts();
   }
-getProductStock(productId: string) {
-   return 
-  }
+
   getBrandName(brandId: string) {
     if (this.brands  && this.brands.find(item => item.id === brandId)) {
       return this.brands.find(brand => brand.id === brandId).name;

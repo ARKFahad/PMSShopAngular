@@ -33,6 +33,10 @@ export class AuthService {
     const decodedToken = this.getDecodedToken();
     return decodedToken?.unique_name ?? '';
   }
+  public get getBranchId(): string {
+    const decodedToken = this.getDecodedToken();
+    return decodedToken?.branchId ?? ''; 
+  }
 
   public get getEmail(): string {
     const decodedToken = this.getDecodedToken();
@@ -58,12 +62,18 @@ export class AuthService {
       return false;
     }
 
-    if(authorizationType === 'Role') {
-      const roles = decodeToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-      if (roles === undefined || roles.length === 0) return false;
-      return allowedData.some(a => roles.includes(a));
+    // if(authorizationType === 'Role') {
+    //   const roles = decodeToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    //   if (roles === undefined || roles.length === 0) return false;
+    //   return allowedData.some(a => roles.includes(a));
 
-    } else if (authorizationType === 'Permission') {
+    // }
+      if(authorizationType === 'Role') {
+      
+      return decodeToken.role==='Salesman'?true:false;
+
+    } 
+     else if (authorizationType === 'Permission') {
       const permissions = decodeToken['Permission'];
       if (permissions === undefined || permissions.length === 0) return false;
       return allowedData.some(a => permissions.includes(a));

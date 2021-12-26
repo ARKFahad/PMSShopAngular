@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div *appHasRole='["Salesman"]' class="row">
         <div class="col-md-6 col-xl-6 u-mr-auto">
             <div class="c-card is-animated background-color-primary" style="color: white;">
                 <div>
@@ -20,7 +20,8 @@
                 </div>
             </div>
         </div>
-        <div *appHasRole='["Admin"]' class="col-md-6 col-xl-6 u-ml-auto">
+         <div class="col-md-6 col-xl-6 u-ml-auto"></div>
+        <!-- <div *appHasRole='["Admin"]' class="col-md-6 col-xl-6 u-ml-auto">
             <div class="c-card is-animated">
                 <div>
                     <h1>Dashboard</h1>
@@ -28,9 +29,9 @@
                     <button mat-raised-button color="primary" routerLink="/admin">Dashboard</button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
-    <div *appHasRole='["Admin"]' class="row " style="place-content: center;">
+    <!-- <div *appHasRole='["Admin"]' class="row " style="place-content: center;">
         <div class="col-md-6 col-xl-6 u-ml-auto">
             <div class="c-card is-animated">
                 <div>
@@ -49,6 +50,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 </div>

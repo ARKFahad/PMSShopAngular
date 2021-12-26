@@ -25,6 +25,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.loadCurrentCart();
     this.cartService.get().subscribe((data) => {
+      console.log(data)
       this.total = 0;
       this.cartItems = data;
       data.forEach(arg => {
@@ -40,11 +41,12 @@ export class CartComponent implements OnInit {
     });
      this.netTotal=this.total
   }
-  increaseQuantity(productId) {
-    this.cartService.increase(productId);
+  increaseQuantity(productId,productStockQuantity) {
+    console.log(productStockQuantity)
+    this.cartService.increase(productId,productStockQuantity);
   }
-  reduceQuantity(productId) {
-    this.cartService.reduce(productId);
+  reduceQuantity(productId,productStockQuantity) {
+    this.cartService.reduce(productId,productStockQuantity);
   }
   removeItem(productId) {
     this.cartService.remove(productId);
@@ -98,5 +100,9 @@ export class CartComponent implements OnInit {
         this.netTotal-=result?.discount
       }
     });
+  }
+
+  onChangeQuantity(item){
+    this.cartService.onChangeQuantity(item);
   }
 }

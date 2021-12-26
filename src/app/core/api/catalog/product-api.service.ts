@@ -8,7 +8,7 @@ import { Result } from '../../models/wrappers/Result';
 @Injectable()
 export class ProductApiService {
 
-  baseUrl = environment.apiUrl + 'product';
+  baseUrl = environment.apiUrl + 'stock';
   //baseUrl = 'http://103.91.229.10/pms/api/Product';
 
   constructor(private http: HttpClient) {

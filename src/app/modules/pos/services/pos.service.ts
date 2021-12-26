@@ -1,5 +1,5 @@
 import { CategoryParams } from './../models/categoryParams';
-import { HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
@@ -19,6 +19,7 @@ import { Category } from '../models/category';
 import { CategoryApiService } from 'src/app/core/api/catalog/category-api.service';
 import { ProductRequestModel } from '../models/productRequestModel';
 import { CustomerRequestModel } from '../models/customerRequestModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class PosService {
 
   public isCustomerLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor(private customerApi: CustomerApiService,private productApi :ProductApiService,
-    private brandService:BrandApiService, private categoryService: CategoryApiService ) { }
+    private brandService:BrandApiService, private categoryService: CategoryApiService ,private http:HttpClient) { }
 
   
     getCustomerList(customerRequestModel:CustomerRequestModel): any {
@@ -114,4 +115,6 @@ getProductsList(
       .getAlls(filterValue)
       .pipe(map((response:any) => response));
   }
+
+  
 }

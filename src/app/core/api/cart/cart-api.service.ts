@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CartApiModel } from '../../models/cart/cart';
 import { Result } from '../../models/wrappers/Result';
+import { AuthService } from '../../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,10 @@ export class CartApiService {
 
   baseUrl = environment.apiUrl + 'cart';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private authService:AuthService) {
   }
   create(customerId: string) {
-    return this.http.post<any>(this.baseUrl, { "customerId": customerId });
+    return this.http.post<any>(this.baseUrl, { "customerId": customerId,"branchId":this.authService.getBranchId });
   }
   get(customerId: string) {
     let params = new HttpParams();

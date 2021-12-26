@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
- // apiUrl: "https://localhost:44314/api/"
+   apiUrl: "https://localhost:44314/api/"
  // apiUrl: "http://103.91.229.10/pms/api/"
-  apiUrl: "https://api.xenodochial-meitner.103-91-229-10.plesk.page/api/"
+  // apiUrl: "https://vetapi.butsbd.com/api/"
 };
 
 /*

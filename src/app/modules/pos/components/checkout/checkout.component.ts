@@ -35,15 +35,14 @@ export class CheckoutComponent implements OnInit {
   submitOrder() {
     this.isBeingProcessed = true;
     this.checkOutService.submitOrder(this.cartId,this.discount).subscribe((result) => {
-      console.log("submit sale",result)
-      if(result?.saleId.length>2){
-         this.toastr.info('Sale Added Successfully');
-      }else{
-          this.toastr.info('Something went wrong');
-      }
-     
-      this.cartService.reset();
+     this.toastr.info(result.message);
+      this.cartService.getCustomerCart(this.customer.id);
       this.dialog.closeAll();
+     this.checkOutService.getInvoiceReport(result.saleId).subscribe(res => {
+       console.log(res)
+  const fileURL = URL.createObjectURL(res);
+  window.open(fileURL, '_blank');
+});
     }).add(() => this.isBeingProcessed = false);
   }
 }

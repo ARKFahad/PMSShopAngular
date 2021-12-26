@@ -18,20 +18,22 @@
       <div *ngIf="cartItems">
         <div *ngFor="let item of cartItems" class="row"
           style="margin:2px;padding:15px;background: rgba(0,0,0,.06);border-radius: 5px;">
-          <div class="col-2" style="font-size: large;align-self: center;">
-            X {{item.quantity}}
+          <div class="col-3" style="font-size: large;align-self: center;">
+            <mat-form-field appearance="outline" class="example-full-width">
+              <input matInput type="number" [(ngModel)]="item.quantity" (keyup)="onChangeQuantity(item)" id="example-ngModel">
+            </mat-form-field> 
           </div>
-          <div class="col-6" style="align-self: center;">
+          <div class="col-5" style="align-self: center;">
             <h4 style="margin: 0px!important;">{{item.productName}}</h4>
-            Rate : ${{item.price}}
+            Rate : ৳{{item.price}}
             <br>
-            <b>Total : ${{item.total}}</b>
+            <b>Total : ৳{{item.total}}</b>
           </div>
           <div style="align-self: center;text-align: right;" class="col-4">
-            <button mat-icon-button (click)="increaseQuantity(item.productId)">
+            <button mat-icon-button (click)="increaseQuantity(item.productId,item.productStockQuantity)">
               <mat-icon>north</mat-icon>
             </button>
-            <button (click)="reduceQuantity(item.productId)" mat-icon-button>
+            <button (click)="reduceQuantity(item.productId,item.productStockQuantity)" mat-icon-button>
               <mat-icon *ngIf="item.quantity >= 1" style="color: red;">south</mat-icon>
             </button>
             <button (click)="removeItem(item.productId)" mat-icon-button>

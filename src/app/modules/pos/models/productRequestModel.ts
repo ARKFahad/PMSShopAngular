@@ -4,6 +4,7 @@ export class ProductRequestModel {
   keyword: string;
   supplierIds: string[];
   categoryIds: string[];
+  branchId:string
   page: number;
   rowsPerPage: number;
 }
