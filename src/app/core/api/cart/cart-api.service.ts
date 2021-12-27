@@ -23,9 +23,9 @@ export class CartApiService {
     return this.http.get<Result<CartApiModel[]>>(this.baseUrl, { params: params });
   }
    getCartByCustomerId(customerId: string) {
-    let params = new HttpParams();
-    params = params.append('customerId', customerId);
-    return this.http.get<any>(this.baseUrl+'/'+customerId);
+    //let params = new HttpParams();
+    //  params = params.append('customerId', customerId);
+    return this.http.get<any>(this.baseUrl+'/'+customerId+'/'+this.authService.getBranchId);
     
   }
   clear(cartId: string)
