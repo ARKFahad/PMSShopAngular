@@ -18,15 +18,20 @@
       <div *ngIf="cartItems">
         <div *ngFor="let item of cartItems" class="row"
           style="margin:2px;padding:15px;background: rgba(0,0,0,.06);border-radius: 5px;">
-          <div class="col-3" style="font-size: large;align-self: center;">
+          <div class="col-3" style="font-size: 12px;align-self: center;">
             <mat-form-field appearance="outline" class="example-full-width">
+               <mat-label>Quantity</mat-label>
               <input matInput type="number" [(ngModel)]="item.quantity" (keyup)="onChangeQuantity(item)" id="example-ngModel">
             </mat-form-field> 
+            <!--X {{item.quantity}} -->
           </div>
-          <div class="col-5" style="align-self: center;">
+          <div class="col-5" style="font-size: 12px;align-self: center;">
             <h4 style="margin: 0px!important;">{{item.productName}}</h4>
-            Rate : ৳{{item.price}}
-            <br>
+            <mat-form-field appearance="outline" class="example-full-width">
+                <mat-label>Rate</mat-label>
+              <input matInput type="number" [(ngModel)]="item.price" (keyup)="onChangeQuantity(item)" id="example-ngModel">
+            </mat-form-field>  
+            <!--Rate: ৳{{item.price}} -->
             <b>Total : ৳{{item.total}}</b>
           </div>
           <div style="align-self: center;text-align: right;" class="col-4">
