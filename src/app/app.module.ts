@@ -28,6 +28,7 @@ import { PermissionGuard } from './core/guards/permission.guard';
 import { RoleGuard } from './core/guards/role.guard';
 import { DatePipe } from '@angular/common';
 import { CustomerService } from './modules/admin/people/services/customer.service';
+import { OnlyNumberDirective } from './core/directives/only-number.directive';
 
 export function rootLoaderFactory(http: HttpClient)
 {
@@ -41,7 +42,8 @@ export function rootLoaderFactory(http: HttpClient)
     PosLayoutComponent,
     ToolbarComponent,
     HomeLayoutComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    OnlyNumberDirective
   ],
   imports: [
     BrowserModule,

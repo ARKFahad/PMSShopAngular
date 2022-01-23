@@ -20,9 +20,9 @@
             <span style="font-weight:lighter;font-size: small;" translate>pos.selectCustomer</span>
         </a>
         <!-- (click)="openCustomerSelectionForm()" -->
-        <a *ngIf="customer" color="accent"  mat-raised-button style="font-weight:lighter;font-size: small; border-radius: 4px 0px 0px 4px!important;" translate>
+        <a (click)="openCustomerSelectionForm()" *ngIf="customer" color="accent"  mat-raised-button style="font-weight:lighter;font-size: small; border-radius: 4px 0px 0px 4px!important;" translate>
             <span style="margin-right: 10px;" class="fas fa-user-circle"></span>
-            {{customer.name}}
+            {{cartService.currentCustomer.name}}
         </a>
 
         <button mat-icon-button (click)="cart.toggle()">

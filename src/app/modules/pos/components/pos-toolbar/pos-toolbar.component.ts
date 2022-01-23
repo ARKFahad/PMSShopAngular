@@ -58,7 +58,7 @@ export class PosToolbarComponent implements OnInit {
     const dialogRef = this.dialog.open(CustomerSelectionComponent);
     dialogRef.afterClosed().subscribe((customer: Customer) => {
       if (customer) {
-        this.customer = customer;
+        this.customer = this.cartService.currentCustomer;
         this.cartService.setCurrentCustomer(customer);
         this.cartService.getCustomerCart(customer.id);
       }

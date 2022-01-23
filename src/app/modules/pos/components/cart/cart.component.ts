@@ -103,6 +103,7 @@ export class CartComponent implements OnInit {
   }
 
   onChangeQuantity(item){
+    console.log(item)
     this.cartService.onChangeQuantity(item);
   }
 }
