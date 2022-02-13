@@ -15,6 +15,19 @@
         <input matInput autocomplete="off" type="text" autocomplete="off" readonly value="{{this.customer.phone}}" />
       </mat-form-field> -->
 
+      <!-- CASH PAYMENT -->
+       <div class="row">
+              <div class="col-6">
+                <h2 style="margin: 0px;"> Given Amount</h2>
+              </div>
+              <div class="col-6" style="text-align: right;">
+                <mat-form-field appearance="outline">
+                  <mat-label>Given Amount</mat-label>
+                  <input matInput  type="number" [(ngModel)]="givenAmount" >
+                </mat-form-field>
+              </div>
+            </div>
+
     </div>
     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
       <div *ngIf="cartItems && cartItems.length !=0">
@@ -26,7 +39,7 @@
                 X {{item.quantity}}
               </div>
               <div class="col-5" style="align-self: center;">
-                <h4 style="margin: 0px!important;">{{item.productName}}</h4>
+                <h4 style="margin: 0px!important;">{{item.productName}} {{item.productPackSize}}</h4>
               </div>
               <div class="col-5" style="align-self: center;">
                 <h4 style="margin: 0px!important;">{{item.quantity*item.price}}</h4>
@@ -40,21 +53,29 @@
           <mat-card-content style="padding: 0!important;margin-bottom: 0px;">
             
             <div class="row">
-              <div class="col-6">SubTotal</div>
+              <div class="col-6">Total</div>
               <div class="col-6" style="text-align: right;">৳{{total}}</div>
             </div>
             <div class="row">
               <div class="col-6">Discount</div>
               <div class="col-6" style="text-align: right;">৳{{discount}}</div>
             </div>
-            <br>
+            
             <div class="row">
               <div class="col-6">
-                <h1 style="margin: 0px;">Total Payable</h1>
+                <h2 style="margin: 0px;color: blue;"> Payable</h2>
               </div>
               <div class="col-6" style="text-align: right;">
-                <h2 style="margin: 0px;">৳{{netTotal}}</h2>
+                <h2 style="margin: 0px;color: blue;">৳{{netTotal}}</h2>
               </div>
+            </div>
+             <div class="row">
+              <div class="col-6"><h2>Given</h2></div>
+              <div class="col-6" style="text-align: right;"><h2>৳{{givenAmount}}</h2></div>
+            </div>
+            <div class="row">
+              <div class="col-6"><h2>Change</h2></div>
+              <div class="col-6" style="text-align: right;"><h2>৳{{givenAmount-netTotal}}</h2></div>
             </div>
           </mat-card-content>
         </mat-card>
@@ -65,7 +86,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-raised-button [mat-dialog-close]="true">{{'common.cancel'|translate}}</button>
-  <button *ngIf="!isBeingProcessed" mat-raised-button (click)="submitOrder()"
+  <button *ngIf="!isBeingProcessed" mat-raised-button [disabled]="netTotal>givenAmount" (click)="submitOrder()"
     color="accent">{{'dialogs.checkOut.button'|translate}}</button>
   <button *ngIf="isBeingProcessed" mat-raised-button color="accent" disabled>
     <mat-icon>

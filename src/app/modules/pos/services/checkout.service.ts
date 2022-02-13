@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { CheckoutApiService } from 'src/app/core/api/checkout/checkout-api.service';
 import { Result } from 'src/app/core/models/wrappers/Result';
 import { environment } from 'src/environments/environment';
+import { CheckOut } from '../models/checkOut';
 import { CheckOutParams } from '../models/checkOutParams';
 
 @Injectable({
@@ -13,8 +14,8 @@ import { CheckOutParams } from '../models/checkOutParams';
 export class CheckoutService {
 
   constructor(public checkOutApi: CheckoutApiService,private http:HttpClient) { }
-  submitOrder(cartId:string,discount:number): any {
-    return this.checkOutApi.submitOrder(cartId,discount)
+  submitOrder(data:CheckOut): any {
+    return this.checkOutApi.submitOrder(data)
       .pipe(map((response: any) => {
         return response;
       }));

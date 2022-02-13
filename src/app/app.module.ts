@@ -43,7 +43,7 @@ export function rootLoaderFactory(http: HttpClient)
     ToolbarComponent,
     HomeLayoutComponent,
     AdminLayoutComponent,
-    OnlyNumberDirective
+    OnlyNumberDirective,
   ],
   imports: [
     BrowserModule,

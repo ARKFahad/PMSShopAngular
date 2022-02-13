@@ -1,0 +1,13 @@
+<h1 mat-dialog-title> <strong>Payment Amount</strong></h1>
+<div mat-dialog-content>
+    <mat-form-field >
+         <mat-label>Payment Amount</mat-label>
+        <input type="text" placeholder="Payment" (keyup)="onChangeAmount()" matInput [(ngModel)]="paymentAmount">
+         <mat-hint>In case of no payment,must type 0 and hit Apply Payment button below</mat-hint>
+    </mat-form-field>
+   
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-flat-button  color="accent" (click)="doAction()">Apply Payment</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

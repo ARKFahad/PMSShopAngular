@@ -30,10 +30,11 @@ export class PosToolbarComponent implements OnInit {
     this.customer=new Customer()
     this.customer.id='8156b38d-8724-4a18-8116-303bcf408701';
     this.customer.name='CASH CUSTOMER'
+    this.customer.balance=0
     this.cartService.setCurrentCustomer(this.customer);
     this.cartService.getCustomerCart(this.customer.id);
-    this.cartService.get().subscribe(res => this.cartItemCount = res.length);
-    this.cartService.getCurrentCustomer().subscribe(res=>this.customer = res);
+  //  this.cartService.get().subscribe(res => this.cartItemCount = res.length);
+   // this.cartService.getCurrentCustomer().subscribe(res=>this.customer = res);
     let themeVariant = this.localStorageService.getItem('themeVariant');
     this.darkModeIcon = themeVariant === 'dark-theme' ? 'bedtime' : 'wb_sunny';
     this.isDarkMode = themeVariant === 'dark-theme';
@@ -58,7 +59,8 @@ export class PosToolbarComponent implements OnInit {
     const dialogRef = this.dialog.open(CustomerSelectionComponent);
     dialogRef.afterClosed().subscribe((customer: Customer) => {
       if (customer) {
-        this.customer = this.cartService.currentCustomer;
+        this.customer = customer;
+        console.log(customer)
         this.cartService.setCurrentCustomer(customer);
         this.cartService.getCustomerCart(customer.id);
       }

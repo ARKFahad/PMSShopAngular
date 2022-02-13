@@ -26,7 +26,7 @@
             <!--X {{item.quantity}} -->
           </div>
           <div class="col-5" style="font-size: 12px;align-self: center;">
-            <h4 style="margin: 0px!important;">{{item.productName}}</h4>
+            <h4 style="margin: 0px!important;">{{item.productName}} {{item.productPackSize}}</h4>
             <mat-form-field appearance="outline" class="example-full-width">
                 <mat-label>Rate</mat-label>
               <input matInput type="number" [(ngModel)]="item.price" (keyup)="onChangeQuantity(item)" id="example-ngModel">
@@ -82,15 +82,21 @@
         <div class="col-6" style="text-align: right;">৳{{discount}}</div>
       </div>
      
-     
-      <br>
       <div class="row">
         <div class="col-6">
-          <h1>Total</h1>
+          <strong>Total</strong>
         </div>
         <div class="col-6" style="text-align: right;">
-          <h2>৳{{netTotal}}</h2>
+          <strong>৳{{netTotal}}</strong>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-6">Payment</div>
+        <div class="col-6" style="text-align: right;">৳{{paymentAmount}}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">Due Amount</div>
+        <div class="col-6" style="text-align: right;">৳{{dueAmount}}</div>
       </div>
     </mat-card-content>
     <mat-card-actions style="padding:0px 0px 0px 10px" style="text-align: center;">
@@ -98,7 +104,20 @@
         <span><span style="margin-right: 10px;" class="fas fa-shopping-basket"></span>Clear Cart</span>
       </button>
       <button mat-raised-button color="info" (click)="openDiscountDialog()">
-        <span><span style="margin-right: 10px;"  class="fas fa-percentage"></span>Discount</span>
+        <span><span style="margin-right: 10px;"  ></span>Discount</span>
+        <!-- class="fas fa-percentage" -->
+      </button>
+      <!-- <button mat-raised-button color="info" (click)="openPaymentDialog()">
+        <span><span style="margin-right: 10px;" ></span>Credit</span>
+      </button>
+      <button mat-raised-button color="info" (click)="openCashPaymentDialog()">
+        <span><span style="margin-right: 10px;" ></span>Cash</span>
+      </button> -->
+       <button mat-raised-button color="info" (click)="openCreditSaleCheckoutDialog()">
+        <span><span style="margin-right: 10px;" ></span>Credit</span>
+      </button>
+      <button mat-raised-button color="info" (click)="openCheckoutDialog()">
+        <span><span style="margin-right: 10px;" ></span>Cash</span>
       </button>
       <!-- <button mat-raised-button color="info">
         <span><span style="margin-right: 10px;" class="fas fa-percentage"></span>Info</span>

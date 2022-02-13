@@ -6,8 +6,11 @@ import { DeleteDialogComponent } from 'src/app/core/shared/components/delete-dia
 import { CartItem } from '../../models/cart';
 import { CheckOut } from '../../models/checkOut';
 import { CartService } from '../../services/cart.service';
+import { CashPaymentComponent } from '../cash-payment/cash-payment.component';
 import { CheckoutComponent } from '../checkout/checkout.component';
+import { CreditSaleCheckoutComponent } from '../credit-sale-checkout/credit-sale-checkout.component';
 import { DiscountComponent } from '../discount/discount.component';
+import { PaymentComponent } from '../payment/payment.component';
 
 @Component({
   selector: 'app-cart',
@@ -20,6 +23,8 @@ export class CartComponent implements OnInit {
   total: number = 0;
   netTotal: number = 0;
   discount:number=0;
+  paymentAmount:number=0;
+  dueAmount:number=0
   constructor(public cartService: CartService, private toastr: ToastrService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -69,11 +74,33 @@ export class CartComponent implements OnInit {
   openCheckoutDialog() {
     var checkOutData = new CheckOut();
     checkOutData.cartId = this.cartService.cartId;
+    checkOutData.total=this.total;
     checkOutData.discount=this.discount;
     checkOutData.netTotal=this.netTotal;
+    checkOutData.paymentAmount=this.paymentAmount;
+    checkOutData.dueAmount=this.dueAmount;
     checkOutData.cartItems = this.cartItems;
     checkOutData.customerId = this.cartService.currentCustomer.id;
     const dialogRef = this.dialog.open(CheckoutComponent, {
+      data: checkOutData,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+   openCreditSaleCheckoutDialog() {
+    var checkOutData = new CheckOut();
+    checkOutData.cartId = this.cartService.cartId;
+    checkOutData.total=this.total;
+    checkOutData.discount=this.discount;
+    checkOutData.netTotal=this.netTotal;
+    checkOutData.paymentAmount=this.paymentAmount;
+    checkOutData.dueAmount=this.dueAmount;
+    checkOutData.cartItems = this.cartItems;
+    checkOutData.customerId = this.cartService.currentCustomer.id;
+    checkOutData.customername=this.cartService.currentCustomer.name;
+    checkOutData.customerbalance=this.cartService.currentCustomer.balance;
+    const dialogRef = this.dialog.open(CreditSaleCheckoutComponent, {
       data: checkOutData,
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -98,12 +125,40 @@ export class CartComponent implements OnInit {
       if (result) {
         this.discount=result?.discount
         this.netTotal-=result?.discount
+        
+      }
+    });
+  }
+  openPaymentDialog() {
+    const dialogRef = this.dialog.open(PaymentComponent, {
+      data: '',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.paymentAmount=result?.paymentAmount
+        this.dueAmount=this.netTotal-this.paymentAmount
+      }
+    });
+  }
+
+   openCashPaymentDialog() {
+    const dialogRef = this.dialog.open(CashPaymentComponent, {
+      data: this.netTotal,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.paymentAmount=result?.paymentAmount
+        this.dueAmount=this.netTotal-this.paymentAmount
       }
     });
   }
 
   onChangeQuantity(item){
-    console.log(item)
+    // var num1 = item?.quantity.match(/^\d+$/);
+    // if(num1===null) item.quantity=""
+    //  var num2 = item?.price.match(/^\d+(\.\d+)*$/);
+    // if (num2 === null)  item.price=""
+   
     this.cartService.onChangeQuantity(item);
   }
 }

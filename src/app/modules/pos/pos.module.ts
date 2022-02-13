@@ -23,6 +23,9 @@ import { CustomerSkeletonComponent } from './components/customer-skeleton/custom
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { DiscountComponent } from './components/discount/discount.component';
 import { CustomerRegisterComponent } from './components/customer-register/customer-register.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { CashPaymentComponent } from './components/cash-payment/cash-payment.component';
+import { CreditSaleCheckoutComponent } from './components/credit-sale-checkout/credit-sale-checkout.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { CustomerRegisterComponent } from './components/customer-register/custom
     CheckoutComponent,
     DiscountComponent,
     CustomerRegisterComponent,
+    PaymentComponent,
+    CashPaymentComponent,
+    CreditSaleCheckoutComponent,
     
   ],
   imports: [

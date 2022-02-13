@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DiscountComponent  {
 
- discount:number=0;
+ discount:any;
 
   constructor(
     public dialogRef: MatDialogRef<DiscountComponent>,
@@ -20,7 +20,10 @@ export class DiscountComponent  {
   doAction(){
     this.dialogRef.close({discount:this.discount});
   }
-
+onChangeDiscount(){
+  var num1 = this.discount.match(/^\d+$/);
+    if(num1===null) this.discount=""
+}
   closeDialog(){
     this.dialogRef.close();
   }
