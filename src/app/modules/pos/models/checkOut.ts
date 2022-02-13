@@ -7,6 +7,8 @@ export class CheckOut {
   netTotal:number;
   paymentAmount:number;
   dueAmount:number;
+  receivedAmount:number;
+  returnAmount:number;
   customerId: string;
   customername:string;
   customerbalance:number;

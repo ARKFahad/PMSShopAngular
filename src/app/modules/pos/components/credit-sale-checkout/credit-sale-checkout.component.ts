@@ -31,8 +31,7 @@ export class CreditSaleCheckoutComponent implements OnInit {
     this.cartId = this.data.cartId;
     this.discount=this.data.discount;
     this.netTotal=this.data.netTotal;
-    this.paymentAmount=this.data.paymentAmount;
-    this.dueAmount=this.data.dueAmount;
+    this.dueAmount=this.data.netTotal;
     this.cartItems = this.data.cartItems;
     this.customer = this.cartService.currentCustomer;
     this.customername=this.data.customername;

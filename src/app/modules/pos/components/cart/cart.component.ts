@@ -77,8 +77,8 @@ export class CartComponent implements OnInit {
     checkOutData.total=this.total;
     checkOutData.discount=this.discount;
     checkOutData.netTotal=this.netTotal;
-    checkOutData.paymentAmount=this.paymentAmount;
-    checkOutData.dueAmount=this.dueAmount;
+    checkOutData.paymentAmount=this.netTotal;
+    checkOutData.dueAmount=0;
     checkOutData.cartItems = this.cartItems;
     checkOutData.customerId = this.cartService.currentCustomer.id;
     const dialogRef = this.dialog.open(CheckoutComponent, {
@@ -94,8 +94,8 @@ export class CartComponent implements OnInit {
     checkOutData.total=this.total;
     checkOutData.discount=this.discount;
     checkOutData.netTotal=this.netTotal;
-    checkOutData.paymentAmount=this.paymentAmount;
-    checkOutData.dueAmount=this.dueAmount;
+    checkOutData.paymentAmount=0;
+    checkOutData.dueAmount=this.netTotal;
     checkOutData.cartItems = this.cartItems;
     checkOutData.customerId = this.cartService.currentCustomer.id;
     checkOutData.customername=this.cartService.currentCustomer.name;

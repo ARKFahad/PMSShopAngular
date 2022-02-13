@@ -30,8 +30,7 @@ export class CheckoutComponent implements OnInit {
     this.discount=this.data.discount;
     this.netTotal=this.data.netTotal;
     this.givenAmount=this.data.netTotal;
-    this.paymentAmount=this.data.paymentAmount;
-    this.dueAmount=this.data.dueAmount;
+    this.paymentAmount=this.data.netTotal;
     this.cartItems = this.data.cartItems;
     this.customer = this.cartService.currentCustomer;
     this.cartItems.forEach(arg => {
@@ -39,7 +38,8 @@ export class CheckoutComponent implements OnInit {
     });
   }
   submitOrder() {
-    
+    this.data.receivedAmount=this.givenAmount;
+    this.data.returnAmount=this.givenAmount-this.netTotal;
     this.isBeingProcessed = true;
     this.checkOutService.submitOrder(this.data).subscribe((result) => {
      this.toastr.info(result.message);

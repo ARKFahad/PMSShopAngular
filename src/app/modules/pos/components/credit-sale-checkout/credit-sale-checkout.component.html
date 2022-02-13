@@ -62,12 +62,16 @@
               </div>
             </div>
              <div class="row">
-              <div class="col-6"><h2>Paid</h2></div>
-              <div class="col-6" style="text-align: right;"><h2>৳{{givenAmount}}</h2></div>
+              <div class="col-6"><h2 style="margin: 0px;">Paid</h2></div>
+              <div class="col-6" style="text-align: right;margin: 0px;"><h2>৳{{givenAmount}}</h2></div>
+            </div>
+             <div class="row">
+              <div class="col-6"><h2 style="margin: 0px;">Due</h2></div>
+              <div class="col-6" style="text-align: right;margin: 0px;"><h2>৳{{netTotal}}</h2></div>
             </div>
             <div class="row">
               <div class="col-6"><h2 style="color: red;">Total Due</h2></div>
-              <div class="col-6" style="text-align: right;"><h2 style="color: red;">৳{{customerbalance+netTotal}}</h2></div>
+              <div class="col-6" style="text-align: right;"><h2 style="color: red;">৳{{(customerbalance+netTotal).toFixed(2)}}</h2></div>
             </div>
           </mat-card-content>
         </mat-card>
