@@ -1,13 +1,18 @@
 import { coerceStringArray } from '@angular/cdk/coercion';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { PaginatedResult } from 'src/app/core/models/wrappers/PaginatedResult';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { environment } from 'src/environments/environment';
 import { Customer } from '../../models/customer';
 import { CustomerParams } from '../../models/customerParams';
 import { CustomerRequestModel } from '../../models/customerRequestModel';
 import { CartService } from '../../services/cart.service';
 import { PosService } from '../../services/pos.service';
 import { CustomerRegisterComponent } from '../customer-register/customer-register.component';
+import { PaymentComponent } from '../payment/payment.component';
 @Component({
   selector: 'app-customer-selection',
   templateUrl: './customer-selection.component.html',
@@ -19,7 +24,10 @@ export class CustomerSelectionComponent implements OnInit {
   customerRequestModel = new CustomerRequestModel();
   searchString: string;
   visible = false;
-  constructor(public posService: PosService, private cartService: CartService,public dialog: MatDialog, public dialogRef: MatDialogRef<CustomerSelectionComponent>) { }
+  constructor(public posService: PosService, private cartService: CartService,
+    private http:HttpClient,private toastr: ToastrService,
+    public dialog: MatDialog, public dialogRef: MatDialogRef<CustomerSelectionComponent>,
+    private authService:AuthService) { }
 
   ngOnInit(): void {
     this.formTitle = 'Customer Selection';
@@ -28,6 +36,7 @@ export class CustomerSelectionComponent implements OnInit {
 
   }
   getCustomers() {
+    this.customerRequestModel.branchId=this.authService.getBranchId
     this.posService.getCustomerList(this.customerRequestModel).subscribe((result) => {
       console.log(result)
       if (result?.succeeded==true) {
@@ -47,6 +56,20 @@ export class CustomerSelectionComponent implements OnInit {
   }
   closeDialog(){
     this.dialogRef.close();
+  }
+  openPaymentDialog(customer) {
+    const dialogRef = this.dialog.open(PaymentComponent, {
+      data: customer,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+       this.http.post<any>(environment.apiUrl+'CustomerPayment',result).subscribe(res=>{
+           this.toastr.success(res?.message)
+           this.dialog.closeAll();
+       })
+
+      }
+    });
   }
    openCustomerRegisterForm() {
     const dialogRef = this.dialog.open(CustomerRegisterComponent);

@@ -1,9 +1,23 @@
-<h1 mat-dialog-title> <strong>Payment Amount</strong></h1>
+<h1 mat-dialog-title> <strong>Customer Payment</strong></h1>
 <div mat-dialog-content>
-    <mat-form-field >
+               <div>
+                    <h2 style="margin: 0px!important;">{{data.name}}</h2>
+                    <strong>Due:</strong> {{data.balance}}
+                </div>
+                  <p></p>
+    <mat-form-field appearance="outline">
+      <mat-label>Select Payment Method </mat-label>
+      <mat-select class="form-select" [(ngModel)]="paymentMethodId">
+        <mat-option *ngFor="let set of paymentMethods" [value]="set.id">
+          {{ set?.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error> Please select a valid Payment Method </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" >
          <mat-label>Payment Amount</mat-label>
-        <input type="text" placeholder="Payment" (keyup)="onChangeAmount()" matInput [(ngModel)]="paymentAmount">
-         <mat-hint>In case of no payment,must type 0 and hit Apply Payment button below</mat-hint>
+        <input type="number" placeholder="Amount" matInput [(ngModel)]="paymentAmount">
+        
     </mat-form-field>
    
 </div>

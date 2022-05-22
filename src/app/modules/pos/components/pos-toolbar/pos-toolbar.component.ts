@@ -69,7 +69,7 @@ export class PosToolbarComponent implements OnInit {
 
   getBranchName(){
     this.http.get<any>(environment.apiUrl+'branch/'+this.authService.getBranchId).subscribe(res=>{
-    this.branchName=res.data.name
+    this.branchName=res.data?.name
     })
     }
 }

@@ -9,7 +9,7 @@ import { Result } from '../../models/wrappers/Result';
 export class CustomerApiService {
 
   baseUrl = environment.apiUrl + 'customer';
-  // baseUrl = 'http://103.91.229.10/pms/api/Customer';
+ 
 
   constructor(private http: HttpClient) {
   }

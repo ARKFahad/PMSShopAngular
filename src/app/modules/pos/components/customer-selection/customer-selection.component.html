@@ -21,9 +21,9 @@
                     <br><strong>Due:</strong> {{customer.balance}}
                 </div>
                 <div style="align-self: center;text-align: right;" class="col-6">
-                    <!-- <button mat-raised-button color="info">
-                        <span><span style="margin-right: 10px;" class="fas fa-info"></span>Info</span>
-                    </button> -->
+                  <button mat-raised-button color="info" (click)="openPaymentDialog(customer)">
+                        <span><span style="margin-right: 10px;" class="fas fa-info"></span>Receive Payment</span>
+                    </button> 
                     <button mat-raised-button color="accent" (click)="selectCustomer(customer)">
                         <span><span style="margin-right: 10px;" class="fas fa-check"></span>Select</span>
                     </button>

@@ -100,11 +100,18 @@ export class CartComponent implements OnInit {
     checkOutData.customerId = this.cartService.currentCustomer.id;
     checkOutData.customername=this.cartService.currentCustomer.name;
     checkOutData.customerbalance=this.cartService.currentCustomer.balance;
-    const dialogRef = this.dialog.open(CreditSaleCheckoutComponent, {
+    if(this.cartService.currentCustomer.id=='8156b38d-8724-4a18-8116-303bcf408701'){
+      alert('Please Switch Cash Customer to Another Customer!!!!')
+
+    }else{
+        const dialogRef = this.dialog.open(CreditSaleCheckoutComponent, {
       data: checkOutData,
     });
     dialogRef.afterClosed().subscribe(result => {
     });
+
+    }
+  
   }
   openClearCartDialog() {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
@@ -129,30 +136,9 @@ export class CartComponent implements OnInit {
       }
     });
   }
-  openPaymentDialog() {
-    const dialogRef = this.dialog.open(PaymentComponent, {
-      data: '',
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.paymentAmount=result?.paymentAmount
-        this.dueAmount=this.netTotal-this.paymentAmount
-      }
-    });
-  }
+  
 
-   openCashPaymentDialog() {
-    const dialogRef = this.dialog.open(CashPaymentComponent, {
-      data: this.netTotal,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.paymentAmount=result?.paymentAmount
-        this.dueAmount=this.netTotal-this.paymentAmount
-      }
-    });
-  }
-
+   
   onChangeQuantity(item){
     // var num1 = item?.quantity.match(/^\d+$/);
     // if(num1===null) item.quantity=""
