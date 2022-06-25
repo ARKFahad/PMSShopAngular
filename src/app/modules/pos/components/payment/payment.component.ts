@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit{
+  customerBalance:number
 paymentAmount:number;
 paymentMethodId:string;
 paymentMethods:any[]
@@ -22,9 +23,15 @@ paymentMethods:any[]
    
   }
   ngOnInit(): void {
-    this.getPaymentMethods()
+    this.getPaymentMethods();
+   this.getCustomerBalance()
   }
 
+  getCustomerBalance(){
+      this.http.get<any>(environment.apiUrl + 'account/balance/' + this.data?.accountId+'/1/'+this.authService.getBranchId).subscribe(res=>{
+        this.customerBalance=res?.balance
+      })
+  }
   doAction(){
     if(this.paymentMethodId && this.paymentAmount>0){
     var payment=new CustomerPayment();

@@ -5,4 +5,5 @@ export interface Customer {
     email: string;
     imageUrl: string;
     type: string;
+   
 }

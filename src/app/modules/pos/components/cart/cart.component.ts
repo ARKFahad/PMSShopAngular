@@ -99,6 +99,7 @@ export class CartComponent implements OnInit {
     checkOutData.cartItems = this.cartItems;
     checkOutData.customerId = this.cartService.currentCustomer.id;
     checkOutData.customername=this.cartService.currentCustomer.name;
+    checkOutData.customerAccountId=this.cartService.currentCustomer.accountId
     checkOutData.customerbalance=this.cartService.currentCustomer.balance;
     if(this.cartService.currentCustomer.id=='8156b38d-8724-4a18-8116-303bcf408701'){
       alert('Please Switch Cash Customer to Another Customer!!!!')

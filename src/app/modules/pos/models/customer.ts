@@ -13,4 +13,5 @@ export class Customer {
     imageUrl: string;
     type: string;
     balance:number;
+    accountId:string;
 }
