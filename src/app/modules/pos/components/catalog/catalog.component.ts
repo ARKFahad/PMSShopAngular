@@ -38,7 +38,7 @@ export class CatalogComponent implements OnInit {
     this.productRequestModel.keyword = '';
     this.productRequestModel.supplierIds = [];
     this.productRequestModel.categoryIds = [];
-    this.productRequestModel.rowsPerPage = 60;
+    this.productRequestModel.rowsPerPage = 20;
     this.productRequestModel.branchId=this.authService.getBranchId
     this.getProducts();
     this.getBrands('');

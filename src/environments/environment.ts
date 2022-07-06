@@ -5,9 +5,7 @@
 export const environment = {
   production: false,
    apiUrl: "https://localhost:7066/api/"
- // apiUrl: "http://103.91.229.10/pms/api/"
-  // apiUrl: "https://vetapi.butsbd.com/api/"
-   //apiUrl: "https://epapi.butsbd.com/api/"
+  
 };
 
 /*

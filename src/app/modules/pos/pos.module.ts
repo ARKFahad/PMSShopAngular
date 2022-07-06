@@ -26,6 +26,7 @@ import { CustomerRegisterComponent } from './components/customer-register/custom
 import { PaymentComponent } from './components/payment/payment.component';
 import { CashPaymentComponent } from './components/cash-payment/cash-payment.component';
 import { CreditSaleCheckoutComponent } from './components/credit-sale-checkout/credit-sale-checkout.component';
+import { DiscountPercentageComponent } from './components/discount-percentage/discount-percentage.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CreditSaleCheckoutComponent } from './components/credit-sale-checkout/c
     PaymentComponent,
     CashPaymentComponent,
     CreditSaleCheckoutComponent,
+    DiscountPercentageComponent,
     
   ],
   imports: [

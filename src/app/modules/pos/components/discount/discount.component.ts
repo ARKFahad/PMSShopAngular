@@ -21,8 +21,8 @@ export class DiscountComponent  {
     this.dialogRef.close({discount:this.discount});
   }
 onChangeDiscount(){
-  var num1 = this.discount.match(/^\d+$/);
-    if(num1===null) this.discount=""
+  // var num1 = this.discount.match(/^\d+$/);
+  //   if(num1===null) this.discount=""
 }
   closeDialog(){
     this.dialogRef.close();

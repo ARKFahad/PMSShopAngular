@@ -1,0 +1,11 @@
+<h1 mat-dialog-title> <strong>Discount (Percentage)</strong></h1>
+<div mat-dialog-content>
+    <mat-form-field >
+        <input type="number" min="0.000001" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 46 && event.charCode <= 57))" placeholder="Discount (Percentage)" (keyup)="onChangeDiscount()" matInput [(ngModel)]="discount">
+    </mat-form-field>
+   
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-flat-button  color="accent" (click)="doAction()">Apply Discount</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

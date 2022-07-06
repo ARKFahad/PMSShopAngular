@@ -3,6 +3,7 @@ import { CartItem } from "./cart";
 export class CheckOut {
   cartId: string;
   total:number;
+  discountInPercentage:number;
   discount:number;
   netTotal:number;
   paymentAmount:number;

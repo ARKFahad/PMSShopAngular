@@ -33,8 +33,6 @@ export class PosToolbarComponent implements OnInit {
     this.customer.balance=0
     this.cartService.setCurrentCustomer(this.customer);
     this.cartService.getCustomerCart(this.customer.id);
-  //  this.cartService.get().subscribe(res => this.cartItemCount = res.length);
-   // this.cartService.getCurrentCustomer().subscribe(res=>this.customer = res);
     let themeVariant = this.localStorageService.getItem('themeVariant');
     this.darkModeIcon = themeVariant === 'dark-theme' ? 'bedtime' : 'wb_sunny';
     this.isDarkMode = themeVariant === 'dark-theme';
@@ -60,9 +58,7 @@ export class PosToolbarComponent implements OnInit {
     dialogRef.afterClosed().subscribe((customer: Customer) => {
       if (customer) {
         this.customer = customer;
-        console.log(customer)
         this.cartService.setCurrentCustomer(customer);
-        this.cartService.getCustomerCart(customer.id);
       }
     });
   }

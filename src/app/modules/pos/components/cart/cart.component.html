@@ -21,7 +21,7 @@
           <div class="col-3" style="font-size: 12px;align-self: center;">
             <mat-form-field appearance="outline" class="example-full-width">
                <mat-label>Quantity</mat-label>
-              <input matInput type="number" [(ngModel)]="item.quantity" (keyup)="onChangeQuantity(item)" id="example-ngModel">
+              <input matInput type="number" min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" [(ngModel)]="item.quantity" (keyup)="onChangeQuantity(item)" id="example-ngModel">
             </mat-form-field> 
             <!--X {{item.quantity}} -->
           </div>
@@ -29,7 +29,7 @@
             <h4 style="margin: 0px!important;">{{item.productName}} {{item.productPackSize}}</h4>
             <mat-form-field appearance="outline" class="example-full-width">
                 <mat-label>Rate</mat-label>
-              <input matInput type="number" [(ngModel)]="item.price" (keyup)="onChangeQuantity(item)" id="example-ngModel">
+              <input matInput type="number" min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 46 && event.charCode <= 57))" [(ngModel)]="item.price" (keyup)="onChangeQuantity(item)" id="example-ngModel" >
             </mat-form-field>  
             <!--Rate: ৳{{item.price}} -->
             <b>Total : ৳{{item.total}}</b>
@@ -84,20 +84,17 @@
      
       <div class="row">
         <div class="col-6">
-          <strong>Total</strong>
+          Total
         </div>
         <div class="col-6" style="text-align: right;">
-          <strong>৳{{netTotal}}</strong>
+          ৳{{netTotal}}
         </div>
       </div>
       <div class="row">
-        <div class="col-6">Payment</div>
-        <div class="col-6" style="text-align: right;">৳{{paymentAmount}}</div>
+        <div class="col-6"> <strong>NET AMOUNT</strong></div>
+        <div class="col-6" style="text-align: right;"><strong>৳{{netTotalAfterRound}}</strong></div>
       </div>
-      <div class="row">
-        <div class="col-6">Due Amount</div>
-        <div class="col-6" style="text-align: right;">৳{{dueAmount}}</div>
-      </div>
+     
     </mat-card-content>
     <mat-card-actions style="padding:0px 0px 0px 10px" style="text-align: center;">
       <button mat-raised-button color="warn" (click)="openClearCartDialog()">
@@ -105,7 +102,11 @@
       </button>
       <button mat-raised-button color="info" (click)="openDiscountDialog()">
         <span><span style="margin-right: 10px;" ></span>Discount</span>
-        <!-- class="fas fa-percentage" -->
+      
+      </button>
+       <button mat-raised-button color="info" (click)="openDiscountPercentageDialog()">
+        <span ><span style="margin-right: 10px;" class="fas fa-percentage"  ></span>Discount</span>
+        
       </button>
      
        <button mat-raised-button color="info" (click)="openCreditSaleCheckoutDialog()">
