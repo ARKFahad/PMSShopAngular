@@ -13,6 +13,8 @@ import { CartService } from '../../services/cart.service';
 import { PosService } from '../../services/pos.service';
 import { ProductRequestModel } from '../../models/productRequestModel';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-catalog',
@@ -31,7 +33,7 @@ export class CatalogComponent implements OnInit {
   hasProductsLoaded: boolean = false;
   invalidCart: boolean = true;
   constructor(private posService: PosService, private toastr: ToastrService, public cartService: CartService, public busyService: BusyService,
-    private authService:AuthService) { }
+    private authService:AuthService,private http:HttpClient) { }
 
   ngOnInit(): void {
    
@@ -49,7 +51,9 @@ export class CatalogComponent implements OnInit {
 
   getProducts() {
     this.hasProductsLoaded = false;
-    this.posService.getProductsList(this.productRequestModel).subscribe((res) => { this.products = res?.data?.item1, this.hasProductsLoaded = true });
+    this.http.get<any>(environment.apiUrl+'stock/pos-search',{params:{branchId:this.productRequestModel.branchId, productName:this.productRequestModel.keyword}})
+    .subscribe((res) => { this.products = res?.data?.item1, this.hasProductsLoaded = true });
+    //this.posService.getProductsList(this.productRequestModel).subscribe((res) => { this.products = res?.data?.item1, this.hasProductsLoaded = true });
   }
 
   getBrands(filterValue:string) {
