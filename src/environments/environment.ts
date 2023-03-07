@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-   apiUrl: "https://localhost:7066/api/"
-  
+  apiUrl: 'https://demo1api.butsbd.com/api/'
 };
 
 /*

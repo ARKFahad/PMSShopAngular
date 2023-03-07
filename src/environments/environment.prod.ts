@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://posapi.butsbd.com/api/"
+  apiUrl: "https://demo1api.butsbd.com/api/"
 };
