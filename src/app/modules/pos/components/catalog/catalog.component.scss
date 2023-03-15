@@ -1,7 +1,35 @@
 .catalog-card {
-    margin-bottom: 30px;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 10px 60px 0 rgba(29, 29, 31, .09);
-    height: calc(100vh-10);
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 10px 60px 0 rgba(29, 29, 31, 0.09);
+  height: calc(100vh-10);
+}
+
+mat-chip {
+  padding: 0px 20px;
+}
+.btn {
+  flex: 1 1 auto;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  // /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+  border-radius: 8px;
+}
+
+.btn:hover {
+  background-position: right center; /* change the direction of the change here */
+}
+
+.btn-1 {
+  background-image: linear-gradient(
+    to right,
+    #bd53ff 0%,
+    #84fab0 51%,
+    #bd53ff 100%
+  );
 }

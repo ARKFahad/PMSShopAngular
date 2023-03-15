@@ -8,10 +8,10 @@ import { ServerErrorComponent } from './components/server-error/server-error.com
 import { MaterialModule } from '../material/material.module';
 import { TableComponent } from './components/table/table.component';
 import { DataPropertyGetterPipe } from '../pipes/data-property-getter.pipe';
-import { BrandApiService } from '../api/catalog/brand-api.service';
-import { CategoryApiService } from '../api/catalog/category-api.service';
-import { ProductApiService } from '../api/catalog/product-api.service';
-import { CustomerApiService } from '../api/people/customer-api.service';
+// import { BrandApiService } from '../api/catalog/brand-api.service';
+// import { CategoryApiService } from '../api/catalog/category-api.service';
+// import { ProductApiService } from '../api/catalog/product-api.service';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { AccessDenialComponent } from './components/access-denial/access-denial.component';
 import { HasPermissionDirective } from '../directives/has-permission.directive';
@@ -21,6 +21,7 @@ import { RoleApiService } from '../api/identity/role-api.service';
 import { IdentityApiService } from '../api/identity/identity-api.service';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { UploaderComponent } from './components/uploader/uploader.component';
+import { CustomerApiService } from '../api/pos/customer-api.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { UploaderComponent } from './components/uploader/uploader.component';
     HasPermissionDirective,
     HasRoleDirective,
     DeleteDialogComponent,
-    UploaderComponent
+    UploaderComponent,
   ],
   imports: [
     CommonModule,
@@ -47,9 +48,13 @@ import { UploaderComponent } from './components/uploader/uploader.component';
     }),
   ],
   providers: [
-    BrandApiService, CategoryApiService, ProductApiService,
+    // BrandApiService,
+    // CategoryApiService,
+    // ProductApiService,
     CustomerApiService,
-    IdentityApiService, UserApiService, RoleApiService
+    IdentityApiService,
+    UserApiService,
+    RoleApiService,
   ],
   exports: [
     ReactiveFormsModule,
@@ -58,7 +63,7 @@ import { UploaderComponent } from './components/uploader/uploader.component';
     TranslateModule,
     HasPermissionDirective,
     HasRoleDirective,
-    UploaderComponent
+    UploaderComponent,
   ],
 })
 export class SharedModule {}

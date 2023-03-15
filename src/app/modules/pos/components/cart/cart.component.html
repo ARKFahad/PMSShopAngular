@@ -1,124 +1,210 @@
-<mat-toolbar class="position-fixed" style="z-index:1000;">
+<mat-toolbar class="position-fixed" style="z-index: 1000">
   <mat-toolbar-row>
     <button mat-icon-button (click)="cart.toggle()">
       <mat-icon>arrow_back</mat-icon>
     </button>
     <a mat-button>
-      <span style="font-weight:lighter;font-size: larger;" translate>pos.cart</span>
+      <span style="font-weight: lighter; font-size: larger" translate
+        >pos.cart</span
+      >
     </a>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<div style="height: calc(100vh-10px);overflow:auto;padding: 20px;padding-top: 80px;padding-bottom: 250px;">
-  <div *ngIf="(cartService.isCartLoading | async); else cartLoaded" style="margin-bottom: 0;">
+<div
+  style="
+    height: calc(100vh-10px);
+    overflow: auto;
+    padding: 20px;
+    padding-top: 80px;
+    padding-bottom: 250px;
+  "
+>
+  <div
+    *ngIf="cartService.isCartLoading | async; else cartLoaded"
+    style="margin-bottom: 0"
+  >
     <app-cart-skeleton></app-cart-skeleton>
   </div>
   <ng-template #cartLoaded>
-    <div style="margin-bottom: 0;">
+    <div style="margin-bottom: 0">
       <div *ngIf="cartItems">
-        <div *ngFor="let item of cartItems" class="row"
-          style="margin:2px;padding:15px;background: rgba(0,0,0,.06);border-radius: 5px;">
-          <div class="col-3" style="font-size: 12px;align-self: center;">
+        <div
+          *ngFor="let item of cartItems"
+          class="row"
+          style="
+            margin: 2px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.06);
+            border-radius: 5px;
+          "
+        >
+          <div class="col-3" style="font-size: 12px; align-self: center">
             <mat-form-field appearance="outline" class="example-full-width">
-               <mat-label>Quantity</mat-label>
-              <input matInput type="number" min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" [(ngModel)]="item.quantity" (keyup)="onChangeQuantity(item)" id="example-ngModel">
-            </mat-form-field> 
+              <mat-label>Quantity</mat-label>
+              <input
+                matInput
+                type="number"
+                min="0"
+                onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                [(ngModel)]="item.quantity"
+                (change)="onChangeQuantity(item)"
+                (keyup)="onChangeQuantity(item)"
+                id="example-ngModel"
+              />
+            </mat-form-field>
             <!--X {{item.quantity}} -->
           </div>
-          <div class="col-5" style="font-size: 12px;align-self: center;">
-            <h4 style="margin: 0px!important;">{{item.productName}} {{item.productPackSize}}</h4>
+          <div class="col-5" style="font-size: 12px; align-self: center">
+            <h4 style="margin: 0px !important">
+              {{ item.productName }} {{ item.productPackSize }}
+            </h4>
             <mat-form-field appearance="outline" class="example-full-width">
-                <mat-label>Rate</mat-label>
-              <input matInput type="number" min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 46 && event.charCode <= 57))" [(ngModel)]="item.price" (keyup)="onChangeQuantity(item)" id="example-ngModel" >
-            </mat-form-field>  
+              <mat-label>Rate</mat-label>
+              <input
+                matInput
+                type="number"
+                min="0"
+                onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 46 && event.charCode <= 57))"
+                [(ngModel)]="item.price"
+                (change)="onChangeQuantity(item)"
+                (keyup)="onChangeQuantity(item)"
+                id="example-ngModel"
+              />
+            </mat-form-field>
             <!--Rate: ৳{{item.price}} -->
-            <b>Total : ৳{{item.total}}</b>
+            <b>Total : ৳{{ item.total }}</b>
           </div>
-          <div style="align-self: center;text-align: right;" class="col-4">
-            <button mat-icon-button (click)="increaseQuantity(item.productId,item.productStockQuantity)">
+          <div style="align-self: center; text-align: right" class="col-4">
+            <button
+              mat-icon-button
+              (click)="
+                increaseQuantity(item.productId, item.productStockQuantity)
+              "
+            >
               <mat-icon>north</mat-icon>
             </button>
-            <button (click)="reduceQuantity(item.productId,item.productStockQuantity)" mat-icon-button>
-              <mat-icon *ngIf="item.quantity >= 1" style="color: red;">south</mat-icon>
+            <button
+              (click)="
+                reduceQuantity(item.productId, item.productStockQuantity)
+              "
+              mat-icon-button
+            >
+              <mat-icon *ngIf="item.quantity >= 1" style="color: red"
+                >south</mat-icon
+              >
             </button>
             <button (click)="removeItem(item.productId)" mat-icon-button>
-              <mat-icon *ngIf="item.quantity >=1" style="color: red;">delete</mat-icon>
+              <mat-icon *ngIf="item.quantity >= 1" style="color: red"
+                >delete</mat-icon
+              >
             </button>
           </div>
         </div>
       </div>
-      <div *ngIf="!(cartService.isCartInvalid | async) && (!cartItems || cartItems.length==0)"
-        style="height: 60vh!important;">
+      <div
+        *ngIf="
+          !(cartService.isCartInvalid | async) &&
+          (!cartItems || cartItems.length == 0)
+        "
+        style="height: 60vh !important"
+      >
         <mat-card>
-          <mat-card-content style="padding: 40px;text-align: center;opacity: 60%;">
-            <h2 translate>
-              pos.cartEmpty</h2>
+          <mat-card-content
+            style="padding: 40px; text-align: center; opacity: 60%"
+          >
+            <h2 translate>pos.cartEmpty</h2>
             <p translate>pos.startAddingProducts</p>
           </mat-card-content>
         </mat-card>
       </div>
-      <div *ngIf="(cartService.isCartInvalid | async)" style="height: 60vh!important;">
+      <div
+        *ngIf="cartService.isCartInvalid | async"
+        style="height: 60vh !important"
+      >
         <mat-card>
-          <mat-card-content style="padding: 40px;text-align: center;opacity: 60%;">
-            <h2 translate>
-              pos.cartInvalid</h2>
+          <mat-card-content
+            style="padding: 40px; text-align: center; opacity: 60%"
+          >
+            <h2 translate>pos.cartInvalid</h2>
             <p translate>pos.cartInvalidMessage</p>
           </mat-card-content>
         </mat-card>
       </div>
     </div>
   </ng-template>
-
 </div>
-<div *ngIf="cartItems && cartItems.length !=0" class="checkout">
-  <mat-card style="margin:0px!important;border-radius: 0px!important;padding: 30px;">
-    <mat-card-content style="padding: 0!important;margin-bottom: 0px;">
+<div *ngIf="cartItems && cartItems.length != 0" class="checkout">
+  <mat-card
+    style="margin: 0px !important; border-radius: 0px !important; padding: 30px"
+  >
+    <mat-card-content style="padding: 0 !important; margin-bottom: 0px">
       <div class="row">
         <div class="col-6">SubTotal</div>
-        <div class="col-6" style="text-align: right;">৳{{total}}</div>
+        <div class="col-6" style="text-align: right">৳{{ total }}</div>
       </div>
       <div class="row">
         <div class="col-6">Discount</div>
-        <div class="col-6" style="text-align: right;">৳{{discount}}</div>
+        <div class="col-6" style="text-align: right">৳{{ discount }}</div>
       </div>
-     
+
       <div class="row">
-        <div class="col-6">
-          Total
-        </div>
-        <div class="col-6" style="text-align: right;">
-          ৳{{netTotal}}
-        </div>
+        <div class="col-6">Total</div>
+        <div class="col-6" style="text-align: right">৳{{ netTotal }}</div>
       </div>
       <div class="row">
-        <div class="col-6"> <strong>NET AMOUNT</strong></div>
-        <div class="col-6" style="text-align: right;"><strong>৳{{netTotalAfterRound}}</strong></div>
+        <div class="col-6"><strong>NET AMOUNT</strong></div>
+        <div class="col-6" style="text-align: right">
+          <strong>৳{{ netTotalAfterRound }}</strong>
+        </div>
       </div>
-     
     </mat-card-content>
-    <mat-card-actions style="padding:0px 0px 0px 10px" style="text-align: center;">
+    <mat-card-actions
+      style="padding: 0px 0px 0px 10px"
+      style="text-align: center"
+    >
       <button mat-raised-button color="warn" (click)="openClearCartDialog()">
-        <span><span style="margin-right: 10px;" class="fas fa-shopping-basket"></span>Clear Cart</span>
+        <span
+          ><span
+            style="margin-right: 10px"
+            class="fas fa-shopping-basket"
+          ></span
+          >Clear Cart</span
+        >
       </button>
       <button mat-raised-button color="info" (click)="openDiscountDialog()">
-        <span><span style="margin-right: 10px;" ></span>Discount</span>
-      
+        <span><span style="margin-right: 10px"></span>Discount</span>
       </button>
-       <button mat-raised-button color="info" (click)="openDiscountPercentageDialog()">
-        <span ><span style="margin-right: 10px;" class="fas fa-percentage"  ></span>Discount</span>
-        
+      <button
+        mat-raised-button
+        color="info"
+        (click)="openDiscountPercentageDialog()"
+      >
+        <span
+          ><span style="margin-right: 10px" class="fas fa-percentage"></span
+          >Discount</span
+        >
       </button>
-     
-       <button mat-raised-button color="info" (click)="openCreditSaleCheckoutDialog()">
-        <span><span style="margin-right: 10px;" class="fas fa-credit-card" ></span>Credit</span>
+
+      <button
+        mat-raised-button
+        color="info"
+        (click)="openCreditSaleCheckoutDialog()"
+      >
+        <span
+          ><span style="margin-right: 10px" class="fas fa-credit-card"></span
+          >Credit</span
+        >
       </button>
       <button mat-raised-button color="accent" (click)="openCheckoutDialog()">
-        <span><span style="margin-right: 10px;"  class="fas fa-check" ></span>Cash</span>
+        <span
+          ><span style="margin-right: 10px" class="fas fa-check"></span
+          >Cash</span
+        >
       </button>
       <!-- <button mat-raised-button color="info">
         <span><span style="margin-right: 10px;" class="fas fa-percentage"></span>Info</span>
       </button> -->
-     
     </mat-card-actions>
   </mat-card>
 </div>

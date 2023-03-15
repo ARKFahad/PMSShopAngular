@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from '../../core/guards/auth.guard';
-import { CatalogComponent } from './catalog/catalog.component';
+// import { CatalogComponent } from './catalog/catalog.component';
 import { PeopleComponent } from './people/people.component';
 import { AboutComponent } from './about/about.component';
 import { IdentityComponent } from './identity/identity.component';
@@ -34,12 +34,12 @@ const routes: Routes = [
     path: 'about',
     component: AboutComponent
   },
-  {
-    path: 'catalog',
-    canActivate: [AuthGuard],
-    component: CatalogComponent,
-    loadChildren: () => import('./catalog/catalog.module').then(mod => mod.CatalogModule),
-  },
+  // {
+  //   path: 'catalog',
+  //   canActivate: [AuthGuard],
+  //   component: CatalogComponent,
+  //   loadChildren: () => import('./catalog/catalog.module').then(mod => mod.CatalogModule),
+  // },
   {
     path: 'event-logs',
     canActivate: [AuthGuard],

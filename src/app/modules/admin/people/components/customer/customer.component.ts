@@ -16,80 +16,80 @@ import { TableColumn } from 'src/app/core/shared/components/table/table-column';
   styleUrls: ['./customer.component.scss'],
 })
 export class CustomerComponent implements OnInit {
-  customers: PaginatedResult<Customer>;
-  customerColumns: TableColumn[];
-  customerParams = new CustomerParams();
-  searchString: string;
+  // customers: PaginatedResult<Customer>;
+  // customerColumns: TableColumn[];
+  // customerParams = new CustomerParams();
+  // searchString: string;
 
-  constructor(
-    public customerService: CustomerService,
-    public dialog: MatDialog,
-    public toastr: ToastrService
-  ) {}
+  // constructor(
+  //   public customerService: CustomerService,
+  //   public dialog: MatDialog,
+  //   public toastr: ToastrService
+  // ) {}
 
   ngOnInit(): void {
-    this.getCustomers();
-    this.initColumns();
+    // this.getCustomers();
+    // this.initColumns();
   }
 
-  getCustomers(): void {
-    this.customerService.getCustomers(this.customerParams).subscribe((result) => {
-      this.customers = result;
-    });
-  }
+  // getCustomers(): void {
+  //   this.customerService.getCustomers(this.customerParams).subscribe((result) => {
+  //     this.customers = result;
+  //   });
+  // }
 
-  initColumns(): void {
-    this.customerColumns = [
-      { name: 'Id', dataKey: 'id', isSortable: true, isShowable: true },
-      { name: 'Name', dataKey: 'name', isSortable: true, isShowable: true },
-      { name: 'Phone', dataKey: 'phone', isSortable: true, isShowable: true },
-      { name: 'Email', dataKey: 'email', isSortable: true, isShowable: true },
-      { name: 'Type', dataKey: 'type', isSortable: true, isShowable: true },
-      { name: 'Action', dataKey: 'action', position: 'right' },
-    ];
-  }
+  // initColumns(): void {
+  //   this.customerColumns = [
+  //     { name: 'Id', dataKey: 'id', isSortable: true, isShowable: true },
+  //     { name: 'Name', dataKey: 'name', isSortable: true, isShowable: true },
+  //     { name: 'Phone', dataKey: 'phone', isSortable: true, isShowable: true },
+  //     { name: 'Email', dataKey: 'email', isSortable: true, isShowable: true },
+  //     { name: 'Type', dataKey: 'type', isSortable: true, isShowable: true },
+  //     { name: 'Action', dataKey: 'action', position: 'right' },
+  //   ];
+  // }
 
-  pageChanged(event: PaginatedFilter): void {
-    this.customerParams.pageNumber = event.pageNumber;
-    this.customerParams.pageSize = event.pageSize;
-    this.getCustomers();
-  }
+  // pageChanged(event: PaginatedFilter): void {
+  //   this.customerParams.pageNumber = event.pageNumber;
+  //   this.customerParams.pageSize = event.pageSize;
+  //   this.getCustomers();
+  // }
 
-  openForm(customer?: Customer): void {
-    const dialogRef = this.dialog.open(CustomerFormComponent, {
-      data: customer,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.getCustomers();
-      }
-    });
-  }
+  // openForm(customer?: Customer): void {
+  //   const dialogRef = this.dialog.open(CustomerFormComponent, {
+  //     data: customer,
+  //   });
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     if (result) {
+  //       this.getCustomers();
+  //     }
+  //   });
+  // }
 
-  remove($event: string): void {
-    this.customerService.deleteCustomer($event).subscribe(() => {
-      this.getCustomers();
-      this.toastr.info('Customer Removed');
-    });
-  }
+  // remove($event: string): void {
+  //   this.customerService.deleteCustomer($event).subscribe(() => {
+  //     this.getCustomers();
+  //     this.toastr.info('Customer Removed');
+  //   });
+  // }
 
-  sort($event: Sort): void {
-    this.customerParams.orderBy = $event.active + ' ' + $event.direction;
-    console.log(this.customerParams.orderBy);
-    this.getCustomers();
-  }
+  // sort($event: Sort): void {
+  //   this.customerParams.orderBy = $event.active + ' ' + $event.direction;
+  //   console.log(this.customerParams.orderBy);
+  //   this.getCustomers();
+  // }
 
-  filter($event: string): void {
-    this.customerParams.searchString = $event.trim().toLocaleLowerCase();
-    this.customerParams.pageNumber = 0;
-    this.customerParams.pageSize = 0;
-    this.getCustomers();
-  }
+  // filter($event: string): void {
+  //   this.customerParams.searchString = $event.trim().toLocaleLowerCase();
+  //   this.customerParams.pageNumber = 0;
+  //   this.customerParams.pageSize = 0;
+  //   this.getCustomers();
+  // }
 
-  reload(): void {
-    this.customerParams.searchString = '';
-    this.customerParams.pageNumber = 0;
-    this.customerParams.pageSize = 0;
-    this.getCustomers();
-  }
+  // reload(): void {
+  //   this.customerParams.searchString = '';
+  //   this.customerParams.pageNumber = 0;
+  //   this.customerParams.pageSize = 0;
+  //   this.getCustomers();
+  // }
 }

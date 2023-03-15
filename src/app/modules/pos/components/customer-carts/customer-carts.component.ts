@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'app-customer-carts',
-  templateUrl: './customer-carts.component.html',
-  styleUrls: ['./customer-carts.component.scss']
-})
-export class CustomerCartsComponent implements OnInit {
+// @Component({
+//   selector: 'app-customer-carts',
+//   templateUrl: './customer-carts.component.html',
+//   styleUrls: ['./customer-carts.component.scss']
+// })
+// export class CustomerCartsComponent implements OnInit {
 
-  constructor() { }
+//   constructor() { }
 
-  ngOnInit(): void {
-  }
+//   ngOnInit(): void {
+//   }
 
-}
+// }

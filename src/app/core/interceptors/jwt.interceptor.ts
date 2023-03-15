@@ -1,26 +1,34 @@
-import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {AuthService} from '../services/auth.service';
-import {JwtHelperService} from '@auth0/angular-jwt';
+import { Injectable } from '@angular/core';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
+  constructor(private authService: AuthService) {}
 
-  constructor(private authService: AuthService) {
-  }
-
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
     request = this.addToken(request);
-   // this.refreshToken(request);
+    // this.refreshToken(request);
     return next.handle(request);
   }
 
   private addToken(request: HttpRequest<any>) {
     if (this.authService.isAuthenticated) {
       const localToken = this.authService.getToken;
-      console.log(localToken)
-      request = request.clone({setHeaders: {'Authorization': `Bearer ${localToken}`}});
+      // console.log(localToken)
+      request = request.clone({
+        setHeaders: { Authorization: `Bearer ${localToken}` },
+      });
     }
     return request;
   }
@@ -29,7 +37,7 @@ export class JwtInterceptor implements HttpInterceptor {
     if (!request.url.includes('token')) {
       const localToken = this.authService.getToken;
       // if token is null
-      if (!(localToken)) {
+      if (!localToken) {
         return;
       }
 

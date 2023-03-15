@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'app-product-info',
-  templateUrl: './product-info.component.html',
-  styleUrls: ['./product-info.component.scss']
-})
-export class ProductInfoComponent implements OnInit {
+// @Component({
+//   selector: 'app-product-info',
+//   templateUrl: './product-info.component.html',
+//   styleUrls: ['./product-info.component.scss']
+// })
+// export class ProductInfoComponent implements OnInit {
 
-  constructor() { }
+//   constructor() { }
 
-  ngOnInit(): void {
-  }
+//   ngOnInit(): void {
+//   }
 
-}
+// }
