@@ -157,13 +157,13 @@ export class CartService {
     return this.currentCustomer$.asObservable();
   }
   private calculate(cartItems: CartItem[]): CartItem[] {
-
     cartItems.forEach(function (part, index, theArray) {
       theArray[index].total =
         cartItems[index].quantity * cartItems[index].price;
     });
     return cartItems;
   }
+
   getCustomerCart(customerId: string) {
     this.cartItems = [];
     this.cartId = 'fdfdfdf';
