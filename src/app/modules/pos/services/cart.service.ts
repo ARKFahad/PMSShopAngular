@@ -24,7 +24,7 @@ export class CartService {
   constructor(private toastr: ToastrService) {}
 
   clearCart() {
-    var cartId = this.cartId;
+    // var cartId = this.cartId;
     this.cartItems = [];
     this.cartItems$.next(this.cartItems);
   }

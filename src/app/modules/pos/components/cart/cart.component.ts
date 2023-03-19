@@ -56,12 +56,15 @@ export class CartComponent implements OnInit {
     this.netTotalAfterRound = Math.round(this.total);
   }
   increaseQuantity(productId, productStockQuantity) {
+    this.discount = 0;
     this.cartService.increase(productId, productStockQuantity);
   }
   reduceQuantity(productId, productStockQuantity) {
+    this.discount = 0;
     this.cartService.reduce(productId, productStockQuantity);
   }
   removeItem(productId) {
+    this.discount = 0;
     this.cartService.remove(productId);
   }
   isCustomerSelected() {
@@ -166,7 +169,7 @@ export class CartComponent implements OnInit {
     // if(num1===null) item.quantity=""
     //  var num2 = item?.price.match(/^\d+(\.\d+)*$/);
     // if (num2 === null)  item.price=""
-
+    this.discount = 0;
     this.cartService.onChangeQuantity(item);
   }
 }

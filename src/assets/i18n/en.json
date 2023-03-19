@@ -116,7 +116,7 @@
   },
   "pos": {
     "title": "Point Of Sales",
-    "selectCustomer": "Select a Cutomer",
+    "selectCustomer": "Select a Customer",
     "changeCustomer": "Change",
     "switchToListView": "Switch to List View",
     "toggleImage": "Toggle Image",
