@@ -1,16 +1,16 @@
-import { OrderComponent } from './components/order/order.component';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+// // import { OrderComponent } from './components/order/order.component';
+// import { NgModule } from '@angular/core';
+// import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
-  {
-    path: 'orders',
-    component: OrderComponent
-  }
-];
+// const routes: Routes = [
+//   // {
+//   //   path: 'orders',
+//   //   component: OrderComponent
+//   // }
+// ];
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class SalesRoutingModule { }
+// @NgModule({
+//   imports: [RouterModule.forChild(routes)],
+//   exports: [RouterModule]
+// })
+// export class SalesRoutingModule { }

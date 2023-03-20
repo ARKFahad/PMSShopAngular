@@ -1,27 +1,23 @@
-// import {HttpClient, HttpParams} from '@angular/common/http';
-// import {Injectable} from '@angular/core';
+// import { HttpClient, HttpParams } from '@angular/common/http';
+// import { Injectable } from '@angular/core';
 // import { Product } from 'src/app/modules/admin/catalog/models/product';
 // import { ProductRequestModel } from 'src/app/modules/pos/models/productRequestModel';
-// import {environment} from 'src/environments/environment';
+// import { environment } from 'src/environments/environment';
 // import { Result } from '../../models/wrappers/Result';
 
 // @Injectable()
 // export class ProductApiService {
-
 //   baseUrl = environment.apiUrl + 'stock';
 //   //baseUrl = 'http://103.91.229.10/pms/api/Product';
 
-//   constructor(private http: HttpClient) {
-    
-//   }
+//   constructor(private http: HttpClient) {}
 
 //   getAlls(params: HttpParams) {
-//     return this.http.get(this.baseUrl, {params: params});
+//     return this.http.get(this.baseUrl, { params: params });
 //   }
-//   getAllList(productRequestModel:ProductRequestModel) {
-//     return this.http.post(this.baseUrl+'/search', productRequestModel);
+//   getAllList(productRequestModel: ProductRequestModel) {
+//     return this.http.post(this.baseUrl + '/search', productRequestModel);
 //   }
-
 
 //   getById(id: string) {
 //     return this.http.get<Result<Product>>(this.baseUrl + id);

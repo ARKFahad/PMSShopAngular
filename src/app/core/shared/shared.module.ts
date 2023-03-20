@@ -16,12 +16,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AccessDenialComponent } from './components/access-denial/access-denial.component';
 import { HasPermissionDirective } from '../directives/has-permission.directive';
 import { HasRoleDirective } from '../directives/has-role.directive';
-import { UserApiService } from '../api/identity/user-api.service';
-import { RoleApiService } from '../api/identity/role-api.service';
-import { IdentityApiService } from '../api/identity/identity-api.service';
+// import { UserApiService } from '../api/identity/user-api.service';
+// import { RoleApiService } from '../api/identity/role-api.service';
+// import { IdentityApiService } from '../api/identity/identity-api.service';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { UploaderComponent } from './components/uploader/uploader.component';
-import { CustomerApiService } from '../api/pos/customer-api.service';
+// import { CustomerApiService } from '../api/pos/customer-api.service';
 
 @NgModule({
   declarations: [
@@ -51,10 +51,10 @@ import { CustomerApiService } from '../api/pos/customer-api.service';
     // BrandApiService,
     // CategoryApiService,
     // ProductApiService,
-    CustomerApiService,
-    IdentityApiService,
-    UserApiService,
-    RoleApiService,
+    // CustomerApiService,
+    // IdentityApiService,
+    // UserApiService,
+    // RoleApiService,
   ],
   exports: [
     ReactiveFormsModule,

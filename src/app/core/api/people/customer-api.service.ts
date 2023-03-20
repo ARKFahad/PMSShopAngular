@@ -7,20 +7,16 @@
 
 // @Injectable()
 // export class CustomerApiService {
-
 //   baseUrl = environment.apiUrl + 'customer';
- 
 
-//   constructor(private http: HttpClient) {
+//   constructor(private http: HttpClient) {}
+
+//   getAllList(customerRequestModel: CustomerRequestModel) {
+//     return this.http.post(this.baseUrl + '/search', customerRequestModel);
 //   }
-
-//   getAllList(customerRequestModel:CustomerRequestModel) {
-//     return this.http.post(this.baseUrl+'/search', customerRequestModel);
-//   }
-
 
 //   getAlls(params: HttpParams) {
-//     return this.http.get(this.baseUrl, {params: params});
+//     return this.http.get(this.baseUrl, { params: params });
 //   }
 
 //   getById(id: string) {
