@@ -12,50 +12,61 @@ import { PosLayoutComponent } from './layouts/pos-layout/pos-layout.component';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'home', pathMatch: 'full'
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
   {
     path: '',
     component: AuthLayoutComponent,
-    loadChildren: () => import('./modules/auth/auth.module').then(mod => mod.AuthModule),
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((mod) => mod.AuthModule),
   },
   {
     path: 'home',
     canActivate: [AuthGuard],
     component: HomeLayoutComponent,
-    loadChildren: () => import('./modules/home/home.module').then(mod => mod.HomeModule),
+    loadChildren: () =>
+      import('./modules/home/home.module').then((mod) => mod.HomeModule),
   },
   {
     path: 'admin',
     canActivate: [AuthGuard, RoleGuard],
     component: AdminLayoutComponent,
-    loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule),
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((mod) => mod.AdminModule),
     data: {
-      allowedRoles: ['SuperAdmin']
-    }
+      allowedRoles: ['SuperAdmin'],
+    },
   },
   {
     path: 'pos',
     canActivate: [AuthGuard],
     component: PosLayoutComponent,
-    loadChildren: () => import('./modules/pos/pos.module').then(mod => mod.PosModule),
+    loadChildren: () =>
+      import('./modules/pos/pos.module').then((mod) => mod.PosModule),
   },
   {
-    path: 'access-denial', component: AccessDenialComponent
+    path: 'access-denial',
+    component: AccessDenialComponent,
   },
   {
-    path: 'not-found', component: NotFoundComponent
+    path: 'not-found',
+    component: NotFoundComponent,
   },
   {
-    path: 'server-error', component: ServerErrorComponent
+    path: 'server-error',
+    component: ServerErrorComponent,
   },
   {
-    path: '**', redirectTo: 'not-found', pathMatch: 'full'
-  }
+    path: '**',
+    redirectTo: 'not-found',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash: true})],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

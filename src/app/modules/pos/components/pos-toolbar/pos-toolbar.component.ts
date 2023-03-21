@@ -9,7 +9,7 @@ import { ThemeService } from 'src/app/core/services/theme.service';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../../models/customer/customer.model';
 import { CartService } from '../../services/cart.service';
-import { PosService } from '../../services/pos.service';
+// import { PosService } from '../../services/pos.service';
 import { CustomerSelectionComponent } from '../customer-selection/customer-selection.component';
 
 @Component({

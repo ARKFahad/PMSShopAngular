@@ -16,7 +16,6 @@ import { PosLayoutComponent } from './layouts/pos-layout/pos-layout.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ToolbarComponent } from './layouts/admin-layout/toolbar/toolbar.component';
-// import { CatalogRoutingModule } from './modules/admin/catalog/catalog-routing.module';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { SharedModule } from './core/shared/shared.module';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
@@ -31,7 +30,7 @@ import { BusyService } from './core/services/busy.service';
 import { PermissionGuard } from './core/guards/permission.guard';
 import { RoleGuard } from './core/guards/role.guard';
 import { DatePipe } from '@angular/common';
-// import { CustomerService } from './modules/admin/people/services/customer.service';
+
 import { OnlyNumberDirective } from './core/directives/only-number.directive';
 
 export function rootLoaderFactory(http: HttpClient) {
@@ -55,7 +54,6 @@ export function rootLoaderFactory(http: HttpClient) {
     MaterialModule,
     SharedModule,
     HttpClientModule,
-    // CatalogRoutingModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

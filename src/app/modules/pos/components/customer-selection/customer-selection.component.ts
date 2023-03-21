@@ -10,7 +10,6 @@ import { Customer } from '../../models/customer/customer.model';
 import { CustomerRequest } from '../../models/customer/customerRequest.model';
 import { CartService } from '../../services/cart.service';
 import { CustomerService } from '../../services/customer.service';
-import { PosService } from '../../services/pos.service';
 import { CustomerRegisterComponent } from '../customer-register/customer-register.component';
 import { PaymentComponent } from '../payment/payment.component';
 @Component({
@@ -25,9 +24,8 @@ export class CustomerSelectionComponent implements OnInit {
   searchString: string;
   visible = false;
   constructor(
-    public posService: PosService,
+    public customerService: CustomerService,
     private cartService: CartService,
-    private customerService: CustomerService,
     private http: HttpClient,
     private toastr: ToastrService,
     public dialog: MatDialog,
@@ -40,7 +38,7 @@ export class CustomerSelectionComponent implements OnInit {
     this.customerRequestModel.rowsPerPage = 10;
     this.getCustomers();
   }
-  
+
   getCustomers() {
     this.customerRequestModel.branchId = this.authService.getBranchId;
     this.customerService

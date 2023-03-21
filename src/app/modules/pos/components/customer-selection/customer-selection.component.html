@@ -25,7 +25,7 @@
 <p></p>
 <mat-dialog-content class="mat-typography">
   <div
-    *ngIf="posService.isCustomerLoading | async; else customerLoaded"
+    *ngIf="customerService.isCustomerLoading | async; else customerLoaded"
     style="margin-bottom: 0"
   >
     <app-customer-skeleton></app-customer-skeleton>
