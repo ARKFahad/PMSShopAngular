@@ -6,12 +6,10 @@ import { DeleteDialogComponent } from 'src/app/core/shared/components/delete-dia
 import { CartItem } from '../../models/cart';
 import { CheckOut } from '../../models/checkOut';
 import { CartService } from '../../services/cart.service';
-import { CashPaymentComponent } from '../cash-payment/cash-payment.component';
 import { CheckoutComponent } from '../checkout/checkout.component';
 import { CreditSaleCheckoutComponent } from '../credit-sale-checkout/credit-sale-checkout.component';
 import { DiscountPercentageComponent } from '../discount-percentage/discount-percentage.component';
 import { DiscountComponent } from '../discount/discount.component';
-import { PaymentComponent } from '../payment/payment.component';
 
 @Component({
   selector: 'app-cart',

@@ -1,9 +1,7 @@
-import { coerceStringArray } from '@angular/cdk/coercion';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { PaginatedResult } from 'src/app/core/models/wrappers/PaginatedResult';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../../models/customer/customer.model';

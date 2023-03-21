@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './core/services/auth.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { LocalStorageService } from './core/services/local-storage.service';
 import { MultilingualService } from './core/services/multilingual.service';
 import { ThemeService } from './core/services/theme.service';
 
