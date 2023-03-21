@@ -43,6 +43,9 @@ export class PosToolbarComponent implements OnInit {
     this.isDarkMode = themeVariant === 'dark-theme';
     this.getBranchName();
     this.loginUserName = this.authService.getFullName;
+    this.cartService.get().subscribe((data) => {
+      this.cartItemCount = data.length;
+    });
   }
   toggleDarkMode() {
     this.isDarkMode = this.themeService.toggleDarkMode();
