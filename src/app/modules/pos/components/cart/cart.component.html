@@ -15,9 +15,9 @@
   style="
     height: calc(100vh-10px);
     overflow: auto;
-    padding: 20px;
-    padding-top: 80px;
-    padding-bottom: 250px;
+    padding: 10px;
+    padding-top: 70px;
+    padding-bottom: 300px;
   "
 >
   <div
@@ -31,74 +31,79 @@
       <div *ngIf="cartItems">
         <div
           *ngFor="let item of cartItems"
-          class="row"
           style="
             margin: 2px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.06);
+            padding: 6px;
+            background: rgba(176, 224, 230, 0.244);
             border-radius: 5px;
           "
         >
-          <div class="col-3" style="font-size: 12px; align-self: center">
-            <mat-form-field appearance="outline" class="example-full-width">
-              <mat-label>Quantity</mat-label>
-              <input
-                matInput
-                type="number"
-                min="0"
-                onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-                [(ngModel)]="item.quantity"
-                (change)="onChangeQuantity(item)"
-                (keyup)="onChangeQuantity(item)"
-                id="example-ngModel"
-              />
-            </mat-form-field>
-            <!--X {{item.quantity}} -->
-          </div>
-          <div class="col-5" style="font-size: 12px; align-self: center">
+          <div
+            style="font-size: 12px; align-self: center"
+            class="d-flex justify-content-between align-items-center"
+          >
             <h4 style="margin: 0px !important">
-              {{ item.productName }} {{ item.productPackSize }}
+              <b>{{ item.productName }} {{ item.productPackSize }}</b>
             </h4>
-            <mat-form-field appearance="outline" class="example-full-width">
-              <mat-label>Rate</mat-label>
-              <input
-                matInput
-                type="number"
-                min="0"
-                onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 46 && event.charCode <= 57))"
-                [(ngModel)]="item.price"
-                (change)="onChangeQuantity(item)"
-                (keyup)="onChangeQuantity(item)"
-                id="example-ngModel"
-              />
-            </mat-form-field>
-            <!--Rate: ৳{{item.price}} -->
-            <b>Total : ৳{{ item.total }}</b>
+            <mat-icon
+              class="btn"
+              *ngIf="item.quantity >= 1"
+              (click)="removeItem(item.productId)"
+              style="color: red"
+              >delete</mat-icon
+            >
           </div>
-          <div style="align-self: center; text-align: right" class="col-4">
-            <button
-              mat-icon-button
-              (click)="
-                increaseQuantity(item.productId, item.productStockQuantity)
-              "
-            >
-              <mat-icon>north</mat-icon>
-            </button>
-            <button
-              (click)="
-                reduceQuantity(item.productId, item.productStockQuantity)
-              "
-              mat-icon-button
-            >
-              <mat-icon *ngIf="item.quantity >= 1" style="color: red"
-                >south</mat-icon
-              >
-            </button>
-            <button (click)="removeItem(item.productId)" mat-icon-button>
-              <mat-icon *ngIf="item.quantity >= 1" style="color: red"
-                >delete</mat-icon
-              >
-            </button>
+          <div class="row row-cols-3 justify-content-between">
+            <div class="col-3">
+              <mat-form-field appearance="outline" class="rate-form-field">
+                <mat-label>Rate</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  min="0"
+                  onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 46 && event.charCode <= 57))"
+                  [(ngModel)]="item.price"
+                  (change)="onChangeQuantity(item)"
+                  (keyup)="onChangeQuantity(item)"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <div class="d-flex justify-content-center align-items-center">
+                <mat-icon
+                  class="btn decrease-btn"
+                  *ngIf="item.quantity >= 1"
+                  matPrefix
+                  (click)="
+                    reduceQuantity(item.productId, item.productStockQuantity)
+                  "
+                  >indeterminate_check_box</mat-icon
+                >
+                <mat-form-field class="qty-form-field" appearance="outline">
+                  <mat-label>Qty</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    min="0"
+                    onkeypress="return (event.charCode != 8 && event.charCode == 0 || (event.charCode >= 48 && event.charCode <= 57))"
+                    [(ngModel)]="item.quantity"
+                    (change)="onChangeQuantity(item)"
+                    (keyup)="onChangeQuantity(item)"
+                  />
+                </mat-form-field>
+                <mat-icon
+                  class="btn increase-btn"
+                  matSuffix
+                  (click)="
+                    increaseQuantity(item.productId, item.productStockQuantity)
+                  "
+                  >add_box</mat-icon
+                >
+              </div>
+            </div>
+            <div class="col-3">
+              <b> Total: ৳{{ item.total }} </b>
+            </div>
           </div>
         </div>
       </div>
