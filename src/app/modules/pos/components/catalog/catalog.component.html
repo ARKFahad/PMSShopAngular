@@ -1,80 +1,151 @@
-<div class="catalog-card" style="margin-bottom: 0;">
-    <div>
-        <div class="row">
-            <div class="col-md-9 col-xl-9">
-                 <form>
-                <mat-form-field appearance="outline">
-                    <mat-label>Filter Products</mat-label>
-                    <input matInput autocomplete="off"  placeholder="Search For Products" [(ngModel)]="productRequestModel.keyword" name="keyword" type="text" (keyup)="doFilter()" autocomplete="off"  />
-                </mat-form-field>
-                <!-- <button mat mat-raised-button color="primary" (click)="doFilter()">Search</button>  --> 
-                </form>
-            </div>
-            <!-- <div class="col-md-3 col-xl-3">
-                <form>
-                    <mat-form-field appearance="outline" >
-                        <mat-label>Filter Brands</mat-label>
-                        <input type="text" placeholder="Brand Selection" aria-label="Filter Brands" matInput [matAutocomplete]="auto" [formControl]="brandAutoComplete">
-                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="getBrandName.bind(this)" >
-                            <mat-option *ngFor="let brand of brands" [value]="productRequestModel.supplierIds">
-                              <mat-checkbox [checked]="isCheckedBrand(brand)" (change)="toggleBrandSelection($event, brand)" (click)="$event.stopPropagation()">
-                                {{brand.name}}
-                              </mat-checkbox>
-                            </mat-option>
-                        </mat-autocomplete>
+<div class="catalog-card" style="margin-bottom: 0">
+  <div>
+    <div class="row">
+      <div class="col-md-9 col-xl-9">
+        <form>
+          <mat-form-field appearance="outline">
+            <mat-label>Filter Products</mat-label>
+            <input
+              matInput
+              autocomplete="off"
+              placeholder="Search For Products"
+              [(ngModel)]="productRequestModel.keyword"
+              name="keyword"
+              type="text"
+              (keyup)="doFilter()"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </form>
+      </div>
 
-                    </mat-form-field>
-                </form>
-            </div>
-            <div class="col-md-3 col-xl-3">
-                <form>
-                    <mat-form-field *ngIf="categories" appearance="outline">
-                      <mat-label>Filter Categories</mat-label>
-                      <input type="text" placeholder="Category Selection" aria-label="Filter Category" matInput [matAutocomplete]="auto" [formControl]="categoryAutoComplete">
-                      <mat-autocomplete #auto="matAutocomplete" [displayWith]="getCategoryName.bind(this)" >
-                          <mat-option *ngFor="let category of categories" [value]="productRequestModel.categoryIds">
-                            <mat-checkbox [checked]="isCheckedCategory(category)" (change)="toggleCategorySelection($event, category)" (click)="$event.stopPropagation()">
-                              {{category.name}}
-                            </mat-checkbox>
-                          </mat-option>
-                      </mat-autocomplete>
-                    </mat-form-field>
-                </form>
-            </div> -->
-            <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3" style="text-align: right; ">
-                <a mat-flat-button style="margin-bottom: 30px!important;width: 100%;" (click)="resetFiter()">
-                    <span style="font-weight:lighter;font-size: medium;">Reload</span>
-                </a>
-            </div>
-        </div>
-        <div *ngIf="hasProductsLoaded == false" style="margin-bottom: 0;">
-            <app-catalog-skeleton [showImage]="showImage"></app-catalog-skeleton>
-        </div>
-        <div *ngIf="hasProductsLoaded == true && (products)">
-            <div class="row">
-                <div *ngFor="let product of products" class="col-xs-12 col-sm-12 col-md-6 col-lg-3" style="border-radius: 5px;">
-                    <mat-card class="example-card">
-                        <!-- <img *ngIf="showImage" mat-card-image src="https://cdn.thewirecutter.com/wp-content/media/2020/12/macbook-2048px-9-2x1-1.jpg?auto=webp&quality=75&crop=2:1&width=1024"> -->
-                        <mat-card-content style="padding: 0!important;">
-                            <h3>
-                                {{product.productName}} {{ product.productPackSize}} 
-                            </h3>
-                            <h4>{{product.productCategory}} {{ product.supplierName}}</h4>
-                            <h5>In Stock: {{product.quantity}} MRP:{{product.mrp}} </h5>
-                            <!-- <p>{{}}</p> -->
-                        </mat-card-content>
-                        <mat-card-actions style="padding:0px 0px 0px 10px">
-                            <!-- [disabled]="(cartService.isCartInvalid | async) || (cartService.IsProductBeingAdded | async)" -->
-                            <button  mat-raised-button color="accent" (click)="addToCart(product)">
-                                <span><span style="margin-right: 10px;" class="fas fa-plus"></span>Add</span>
-                            </button>
-                            <!-- <button mat-raised-button color="info">
-                                <span><span style="margin-right: 10px;" class="fas fa-info"></span>Info</span>
-                            </button> -->
-                        </mat-card-actions>
-                    </mat-card>
-                </div>
-            </div>
-        </div>
+      <div
+        class="col-sm-12 col-md-3 col-lg-3 col-xl-3"
+        style="text-align: right"
+      >
+        <button
+          class="btn btn-6"
+          mat-raised-button
+          color="accent"
+          style="margin-bottom: 30px !important; width: 100%"
+          (click)="resetFilter()"
+        >
+          <i style="margin-right: 10px" class="fa fa-redo"></i>
+          Reload
+        </button>
+      </div>
     </div>
+    <div *ngIf="hasProductsLoaded == false" style="margin-bottom: 0">
+      <app-catalog-skeleton [showImage]="showImage"></app-catalog-skeleton>
+    </div>
+    <div
+      class="d-flex justify-content-center"
+      *ngIf="hasProductsLoaded == true && products"
+    >
+      <div class="row">
+        <div
+          *ngFor="let product of products"
+          class="col d-flex justify-content-center"
+          style="border-radius: 5px"
+        >
+          <mat-card
+            style="min-width: 130px; max-width: 230px; min-height: 150px"
+          >
+            <div style="min-height: 80px">
+              <mat-card-title style="font-size: medium; font-weight: 600">{{
+                product.productName
+              }}</mat-card-title>
+              <mat-card-subtitle style="font-size: smaller">{{
+                product.supplierName
+              }}</mat-card-subtitle>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <p
+                style="
+                  /* background-color: #865dffc0; */
+                  /* background-color: #bd53ff; */
+                  border: 1px solid rgb(7, 194, 100);
+                  padding: 0px 6px;
+                  border-radius: 12px;
+                  color: rgb(7, 194, 100);
+                  /* color: white; */
+                  /* color: #A020F0; */
+                  font-size: small;
+                "
+              >
+                {{ product.productCategory }}
+              </p>
+              <p
+                style="
+                  /* border: 1px solid rgb(7, 194, 100); */
+                  background-color: #bd53ff;
+                  padding: 1px 4px;
+                  border-radius: 4px;
+                  color: white;
+                  font-size: smaller;
+                  /* color: #bd53ff; */
+                  /* color: rgb(7, 194, 100); */
+                "
+              >
+                {{ product.productPackSize }}
+              </p>
+            </div>
+            <mat-card-content style="margin: 0; padding: 0 !important">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <p style="font-size: medium; font-weight: bold; color: #e90064">
+                  {{
+                    product.mrp | currency : "BDT" : "symbol-narrow" : "1.0-2"
+                  }}
+                </p>
+                <p
+                  style="
+                    /* background-color: #08f3a9; */
+                    padding: 1px 4px;
+                    border-radius: 4px;
+                    /* color: #000; */
+                    color: gray;
+                    font-size: smaller;
+                  "
+                >
+                  In Stock: <b>{{ product.quantity }}</b>
+                </p>
+              </div>
+              <!-- <mat-divider></mat-divider> -->
+            </mat-card-content>
+            <mat-card-actions
+              style="
+                display: flex;
+                justify-content: center;
+                margin: 0px !important;
+                padding: 0 !important;
+              "
+            >
+              <button
+                class="btn btn-1"
+                style="margin: 0 !important"
+                mat-raised-button
+                color="accent"
+                (click)="addToCart(product)"
+              >
+                <i style="margin-right: 10px" class="fa fa-cart-plus"></i>
+                ADD TO CART
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

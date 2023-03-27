@@ -8,17 +8,10 @@ import { ServerErrorComponent } from './components/server-error/server-error.com
 import { MaterialModule } from '../material/material.module';
 import { TableComponent } from './components/table/table.component';
 import { DataPropertyGetterPipe } from '../pipes/data-property-getter.pipe';
-import { BrandApiService } from '../api/catalog/brand-api.service';
-import { CategoryApiService } from '../api/catalog/category-api.service';
-import { ProductApiService } from '../api/catalog/product-api.service';
-import { CustomerApiService } from '../api/people/customer-api.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { AccessDenialComponent } from './components/access-denial/access-denial.component';
 import { HasPermissionDirective } from '../directives/has-permission.directive';
 import { HasRoleDirective } from '../directives/has-role.directive';
-import { UserApiService } from '../api/identity/user-api.service';
-import { RoleApiService } from '../api/identity/role-api.service';
-import { IdentityApiService } from '../api/identity/identity-api.service';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { UploaderComponent } from './components/uploader/uploader.component';
 
@@ -32,7 +25,7 @@ import { UploaderComponent } from './components/uploader/uploader.component';
     HasPermissionDirective,
     HasRoleDirective,
     DeleteDialogComponent,
-    UploaderComponent
+    UploaderComponent,
   ],
   imports: [
     CommonModule,
@@ -46,11 +39,7 @@ import { UploaderComponent } from './components/uploader/uploader.component';
       preventDuplicates: true,
     }),
   ],
-  providers: [
-    BrandApiService, CategoryApiService, ProductApiService,
-    CustomerApiService,
-    IdentityApiService, UserApiService, RoleApiService
-  ],
+  providers: [],
   exports: [
     ReactiveFormsModule,
     FormsModule,
@@ -58,7 +47,7 @@ import { UploaderComponent } from './components/uploader/uploader.component';
     TranslateModule,
     HasPermissionDirective,
     HasRoleDirective,
-    UploaderComponent
+    UploaderComponent,
   ],
 })
 export class SharedModule {}

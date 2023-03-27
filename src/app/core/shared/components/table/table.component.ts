@@ -10,11 +10,12 @@ import {
 import { TableColumn } from './table-column';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DeleteDialogComponent } from 'src/app/modules/admin/shared/components/delete-dialog/delete-dialog.component';
+
 import { MatDialog } from '@angular/material/dialog';
 import { PaginatedFilter } from 'src/app/core/models/Filters/PaginatedFilter';
 import { PageEvent } from '@angular/material/paginator';
 import { CustomAction } from './custom-action';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-table',

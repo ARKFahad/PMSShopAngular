@@ -1,59 +1,69 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CustomerPayment } from '../../models/customerPayment';
+import { CustomerPayment } from '../../models/customerPayment/customerPayment.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { PaymentMethodService } from '../../services/payment-method.service';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.scss']
+  styleUrls: ['./payment.component.scss'],
 })
-export class PaymentComponent implements OnInit{
-  customerBalance:number
-paymentAmount:number;
-paymentMethodId:string;
-paymentMethods:any[]
+export class PaymentComponent implements OnInit {
+  customerBalance: number;
+  paymentAmount: number;
+  paymentMethodId: string;
+  paymentMethods: any[];
   constructor(
     public dialogRef: MatDialogRef<PaymentComponent>,
-    private http:HttpClient,
-    private authService:AuthService,
+    private http: HttpClient,
+    private authService: AuthService,
+    private paymentMethodService: PaymentMethodService,
     //@Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
-   
-  }
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
   ngOnInit(): void {
     this.getPaymentMethods();
-   this.getCustomerBalance()
+    this.getCustomerBalance();
   }
 
-  getCustomerBalance(){
-      this.http.get<any>(environment.apiUrl + 'account/balance/' + this.data?.accountId+'/1/'+this.authService.getBranchId).subscribe(res=>{
-        this.customerBalance=res?.balance
-      })
-  }
-  doAction(){
-    if(this.paymentMethodId && this.paymentAmount>0){
-    var payment=new CustomerPayment();
-    payment.branchId=this.authService.getBranchId;
-    payment.customerId=this.data.id;
-    payment.paymentAmount=this.paymentAmount;
-    payment.paymentMethodId=this.paymentMethodId;
-    payment.remark='Payment Received From Pos';
-    this.dialogRef.close(payment);
-    }else{
-      alert('Payment Method can not be blank and amount must be greater than 0 !!')
-    }
-    
-  }
-getPaymentMethods(){
-     this.http.post<any>(environment.apiUrl+'PaymentMethod/search', {page:-1})
-      .subscribe(res => {
-        this.paymentMethods = res.data.item1;
-        
+  getCustomerBalance() {
+    this.http
+      .get<any>(
+        environment.apiUrl +
+          'account/balance/' +
+          this.data?.accountId +
+          '/1/' +
+          this.authService.getBranchId
+      )
+      .subscribe((res) => {
+        this.customerBalance = res?.balance;
       });
   }
-  closeDialog(){
+  doAction() {
+    if (this.paymentMethodId && this.paymentAmount > 0) {
+      const payment = new CustomerPayment();
+      payment.branchId = this.authService.getBranchId;
+      payment.customerId = this.data.id;
+      payment.paymentAmount = this.paymentAmount;
+      payment.paymentMethodId = this.paymentMethodId;
+      payment.remark = 'Payment Received From Pos';
+      this.dialogRef.close(payment);
+    } else {
+      alert(
+        'Please select Payment Method and enter Payment Amount greater than 0 !!'
+      );
+    }
+  }
+
+  getPaymentMethods() {
+    this.paymentMethodService.getPaymentMethodList().subscribe((res) => {
+      this.paymentMethods = res.data.item1;
+    });
+  }
+  
+  closeDialog() {
     this.dialogRef.close();
   }
 }

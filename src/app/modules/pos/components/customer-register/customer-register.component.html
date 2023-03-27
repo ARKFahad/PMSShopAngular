@@ -3,28 +3,49 @@
   <mat-dialog-content class="mat-typography">
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
-      <input matInput autocomplete="off" placeholder="Name" formControlName="name" required />
+      <input
+        matInput
+        autocomplete="off"
+        placeholder="Name"
+        formControlName="name"
+        required
+      />
       <mat-error> Please provide a valid name </mat-error>
     </mat-form-field>
     <p></p>
-     <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline">
       <mat-label>Mobile No</mat-label>
-      <input matInput autocomplete="off" placeholder="Name" formControlName="contact" required />
+      <input
+        matInput
+        autocomplete="off"
+        placeholder="Name"
+        formControlName="contact"
+        required
+      />
       <mat-error> Please provide a valid Mobile No </mat-error>
     </mat-form-field>
     <p></p>
-     <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline">
       <mat-label>Address</mat-label>
-      <input matInput autocomplete="off" placeholder="Name" formControlName="address" />
+      <input
+        matInput
+        autocomplete="off"
+        placeholder="Name"
+        formControlName="address"
+      />
       <mat-error> Please provide a valid address </mat-error>
     </mat-form-field>
     <p></p>
-  
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-raised-button mat-dialog-close>Cancel</button>
-    <button mat-raised-button cdkFocusInitial color="primary"
-      [disabled]="!customerForm.dirty || !customerForm.valid" type="submit">
+    <button
+      mat-raised-button
+      cdkFocusInitial
+      color="primary"
+      [disabled]="!customerForm.dirty || !customerForm.valid"
+      type="submit"
+    >
       Save
     </button>
   </mat-dialog-actions>
