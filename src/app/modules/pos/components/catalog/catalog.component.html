@@ -50,7 +50,7 @@
       <div class="row">
         <div
           *ngFor="let product of products"
-          class="col-xs-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center"
+          class="col d-flex justify-content-center"
           style="border-radius: 5px"
         >
           <mat-card
@@ -139,7 +139,7 @@
             >
               <button
                 class="btn btn-1"
-                style="width: 100%; margin: 0 !important"
+                style="margin: 0 !important"
                 mat-raised-button
                 color="accent"
                 (click)="addToCart(product)"
@@ -148,18 +148,6 @@
               </button>
             </mat-card-actions>
           </mat-card>
-          <!-- <button
-            style="
-              width: 100%;
-              border-radius: 0px 0px 4px 4px;
-              margin: 0px 0px 20px !important;
-            "
-            mat-raised-button
-            color="accent"
-            (click)="addToCart(product)"
-          >
-            <mat-icon>add_shopping_cart</mat-icon> ADD TO CART
-          </button> -->
         </div>
       </div>
     </div>

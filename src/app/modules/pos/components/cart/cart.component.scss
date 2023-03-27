@@ -10,18 +10,18 @@
   width: 80px;
 }
 
-::ng-deep .mat-form-field-wrapper {
+:host ::ng-deep .mat-form-field-wrapper {
   padding: 0px !important;
 }
 
-::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+:host ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
   padding: 0.4em 0px !important;
 }
-::ng-deep .mat-form-field-label-wrapper {
+:host ::ng-deep .mat-form-field-label-wrapper {
   top: -1.5em;
 }
 
-::ng-deep
+:host ::ng-deep
   .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
   .mat-form-field-label {
   transform: translateY(-1.1em) scale(0.75);
@@ -36,7 +36,7 @@
   list-style-type: none;
 }
 
-.btn {
+.icon-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,15 +47,99 @@
   cursor: pointer;
 }
 
-.decrease-btn {
-  // background-color: red;
-  // color: red;
-}
-.increase-btn {
-  // background-color: limegreen;
-  // color: limegreen;
-}
-
-::ng-deep .mat-icon {
+:host ::ng-deep .mat-icon {
   font-size: 20px;
 }
+
+.btn {
+  flex: 1 1 auto;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  // /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+  border-radius: 8px;
+}
+
+.btn:hover {
+  background-position: right center; /* change the direction of the change here */
+}
+
+.btn-2 {
+  background-image: linear-gradient(
+    to right,
+    #fc00ff 0%,
+    #00dbde 51%,
+    #fc00ff 100%
+  );
+}
+.btn-3 {
+  background-image: linear-gradient(
+    to right,
+    #006aff 0%,
+    #4edfff 51%,
+    #2480ff 100%
+  );
+}
+.btn-4 {
+  background-image: linear-gradient(
+    to right,
+    #175491 0%,
+    #43cea2 51%,
+    #185a9d 100%
+  );
+}
+.btn-5 {
+  background-image: linear-gradient(
+    to right,
+    #ee0979 0%,
+    #ff8c3a 51%,
+    #ee0979 100%
+  );
+}
+.btn-6 {
+  background-image: linear-gradient(
+    to right,
+    #103c00 0%,
+    #52c234 51%,
+    #103c00 100%
+  );
+}
+
+// #24C6DC 0%, #514A9D  51%, #24C6DC  100%
+
+// #4776e6 0%,
+// #8e54e9 51%,
+// #4776e6 100%
+
+// #16a085 0%,
+// #f4d03f 51%,
+// #16a085 100%
+
+// #52c234 0%, #103c00  51%, #52c234  100%
+// #00bf8f 0%, #001510  51%, #00bf8f  100%
+// #00d2ff 0%, #3a7bd5  51%, #00d2ff  100%
+// #1D976C 0%, #93F9B9  51%, #1D976C  100%
+// #56ab2f 0%, #a8e063  51%, #56ab2f  100%
+// #6a3093 0%, #a044ff  51%, #6a3093  100%
+// #ee0979 0%, #ff6a00  51%, #ee0979  100%
+// #00dbde 0%,
+// #fc00ff 51%,
+// #00dbde 100%
+
+// #ff4e50 0%,
+// #f9d423 51%,
+// #ff4e50 100%
+
+// #fbda61 0%,
+// #ff5acd 51%,
+// #fbda61 100%
+
+// #0099F7 0%, #F11712  51%, #0099F7  100%
+// #EF3B36 0%, #86aaff  51%, #EF3B36  100%
+
+// #fc354c 0%,
+// #0abfbc 51%,
+// #fc354c 100%

@@ -27,26 +27,23 @@
     <app-cart-skeleton></app-cart-skeleton>
   </div>
   <ng-template #cartLoaded>
-    <div style="margin-bottom: 0">
+    <div>
       <div *ngIf="cartItems">
         <div
           *ngFor="let item of cartItems"
           style="
-            margin: 2px;
-            padding: 6px;
+            margin: 4px;
+            padding: 2px 8px;
             background: rgba(176, 224, 230, 0.244);
-            border-radius: 5px;
+            border-radius: 4px;
           "
         >
-          <div
-            style="font-size: 12px; align-self: center"
-            class="d-flex justify-content-between align-items-center"
-          >
+          <div class="d-flex justify-content-between align-items-center">
             <h4 style="margin: 0px !important">
               <b>{{ item.productName }} {{ item.productPackSize }}</b>
             </h4>
             <mat-icon
-              class="btn"
+              class="icon-btn"
               *ngIf="item.quantity >= 1"
               (click)="removeItem(item.productId)"
               style="color: red"
@@ -71,7 +68,7 @@
             <div class="col-6">
               <div class="d-flex justify-content-center align-items-center">
                 <mat-icon
-                  class="btn decrease-btn"
+                  class="icon-btn"
                   *ngIf="item.quantity >= 1"
                   matPrefix
                   (click)="
@@ -82,6 +79,7 @@
                 <mat-form-field class="qty-form-field" appearance="outline">
                   <mat-label>Qty</mat-label>
                   <input
+                    style="text-align: center"
                     matInput
                     type="number"
                     min="0"
@@ -92,7 +90,7 @@
                   />
                 </mat-form-field>
                 <mat-icon
-                  class="btn increase-btn"
+                  class="icon-btn"
                   matSuffix
                   (click)="
                     increaseQuantity(item.productId, item.productStockQuantity)
@@ -101,9 +99,7 @@
                 >
               </div>
             </div>
-            <div class="col-3">
-              <b> Total: ৳{{ item.total }} </b>
-            </div>
+            <div class="col-3">Total: ৳{{ item.total }}</div>
           </div>
         </div>
       </div>
@@ -141,7 +137,11 @@
 </div>
 <div *ngIf="cartItems && cartItems.length != 0" class="checkout">
   <mat-card
-    style="margin: 0px !important; border-radius: 0px !important; padding: 30px"
+    style="
+      margin: 0px !important;
+      border-radius: 0px !important;
+      padding: 10px 30px;
+    "
   >
     <mat-card-content style="padding: 0 !important; margin-bottom: 0px">
       <div class="row">
@@ -150,7 +150,18 @@
       </div>
       <div class="row">
         <div class="col-6">Discount</div>
-        <div class="col-6" style="text-align: right">৳{{ discount }}</div>
+        <div class="col-6" style="text-align: right">
+          <span
+            style="
+              display: inline-block;
+              padding: 3px 6px;
+              background-color: #10a19d;
+              color: white;
+              letter-spacing: 1px;
+            "
+            >৳{{ discount }}</span
+          >
+        </div>
       </div>
 
       <div class="row">
@@ -160,7 +171,17 @@
       <div class="row">
         <div class="col-6"><strong>NET AMOUNT</strong></div>
         <div class="col-6" style="text-align: right">
-          <strong>৳{{ netTotalAfterRound }}</strong>
+          <span
+            style="
+              display: inline-block;
+              padding: 3px 6px;
+              background-color: #e21818;
+              color: white;
+              font-weight: 600;
+              letter-spacing: 1px;
+            "
+            >৳{{ netTotalAfterRound }}</span
+          >
         </div>
       </div>
     </mat-card-content>
@@ -168,48 +189,62 @@
       style="padding: 0px 0px 0px 10px"
       style="text-align: center"
     >
-      <button mat-raised-button color="warn" (click)="openClearCartDialog()">
+      <button
+        class="btn btn-2"
+        mat-raised-button
+        color="warn"
+        (click)="openClearCartDialog()"
+      >
         <span
-          ><span
-            style="margin-right: 10px"
-            class="fas fa-shopping-basket"
-          ></span
+          ><i style="margin-right: 10px" class="fas fa-shopping-basket"></i
           >Clear Cart</span
         >
       </button>
-      <button mat-raised-button color="info" (click)="openDiscountDialog()">
-        <span><span style="margin-right: 10px"></span>Discount</span>
+      <button
+        class="btn btn-3"
+        mat-raised-button
+        color="info"
+        (click)="openDiscountDialog()"
+      >
+        <span>
+          <i style="margin-right: 10px" class="fa fa-tag"></i>
+          Discount
+        </span>
       </button>
       <button
+        class="btn btn-4"
         mat-raised-button
         color="info"
         (click)="openDiscountPercentageDialog()"
       >
-        <span
-          ><span style="margin-right: 10px" class="fas fa-percentage"></span
-          >Discount</span
-        >
+        <span>
+          <i style="margin-right: 10px" class="fas fa-percentage"></i>
+          Discount
+        </span>
       </button>
 
       <button
+        class="btn btn-5"
         mat-raised-button
         color="info"
         (click)="openCreditSaleCheckoutDialog()"
       >
-        <span
-          ><span style="margin-right: 10px" class="fas fa-credit-card"></span
-          >Credit</span
-        >
+        <span>
+          <i style="margin-right: 10px" class="fas fa-credit-card"></i>
+          Credit
+        </span>
       </button>
-      <button mat-raised-button color="accent" (click)="openCheckoutDialog()">
-        <span
-          ><span style="margin-right: 10px" class="fas fa-check"></span
-          >Cash</span
-        >
+      <button
+        class="btn btn-6"
+        mat-raised-button
+        color="accent"
+        (click)="openCheckoutDialog()"
+      >
+        <span>
+          <i style="margin-right: 10px" class="fa fa-money-bill"></i>
+          Cash
+        </span>
       </button>
-      <!-- <button mat-raised-button color="info">
-        <span><span style="margin-right: 10px;" class="fas fa-percentage"></span>Info</span>
-      </button> -->
     </mat-card-actions>
   </mat-card>
 </div>
