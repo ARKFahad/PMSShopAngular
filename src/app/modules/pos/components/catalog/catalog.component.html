@@ -24,20 +24,15 @@
         style="text-align: right"
       >
         <button
+          class="btn btn-6"
           mat-raised-button
           color="accent"
           style="margin-bottom: 30px !important; width: 100%"
           (click)="resetFilter()"
         >
-          <mat-icon>refresh</mat-icon>Reload
+          <i style="margin-right: 10px" class="fa fa-redo"></i>
+          Reload
         </button>
-        <!-- <a
-          mat-flat-button
-          style="margin-bottom: 30px !important; width: 100%"
-          (click)="resetFilter()"
-        >
-          <span style="font-weight: lighter; font-size: medium">Reload</span>
-        </a> -->
       </div>
     </div>
     <div *ngIf="hasProductsLoaded == false" style="margin-bottom: 0">
@@ -144,7 +139,8 @@
                 color="accent"
                 (click)="addToCart(product)"
               >
-                <mat-icon>add_shopping_cart</mat-icon> ADD TO CART
+                <i style="margin-right: 10px" class="fa fa-cart-plus"></i>
+                ADD TO CART
               </button>
             </mat-card-actions>
           </mat-card>
