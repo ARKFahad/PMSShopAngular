@@ -24,9 +24,8 @@
         style="text-align: right"
       >
         <button
-          class="btn btn-6"
           mat-raised-button
-          color="accent"
+          color="primary"
           style="margin-bottom: 30px !important; width: 100%"
           (click)="resetFilter()"
         >
@@ -39,63 +38,49 @@
       <app-catalog-skeleton [showImage]="showImage"></app-catalog-skeleton>
     </div>
     <div
-      class="d-flex justify-content-center"
+      class="container d-flex justify-content-center"
       *ngIf="hasProductsLoaded == true && products"
     >
-      <div class="row">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2">
         <div
           *ngFor="let product of products"
-          class="col d-flex justify-content-center"
+          class="col"
           style="border-radius: 5px"
         >
-          <mat-card
-            style="min-width: 130px; max-width: 230px; min-height: 150px"
-          >
-            <div style="min-height: 80px">
-              <mat-card-title style="font-size: medium; font-weight: 600">{{
-                product.productName
-              }}</mat-card-title>
-              <mat-card-subtitle style="font-size: smaller">{{
-                product.supplierName
-              }}</mat-card-subtitle>
-            </div>
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-              "
-            >
-              <p
+          <mat-card style="min-width: 150px; min-height: 150px">
+            <div style="min-height: 100px">
+              <mat-card-title
                 style="
-                  /* background-color: #865dffc0; */
-                  /* background-color: #bd53ff; */
-                  border: 1px solid rgb(7, 194, 100);
-                  padding: 0px 6px;
-                  border-radius: 12px;
-                  color: rgb(7, 194, 100);
-                  /* color: white; */
-                  /* color: #A020F0; */
                   font-size: small;
+                  font-weight: bold;
+                  align-items: center;
+                  margin-bottom: 0.7rem;
                 "
+                >{{ product.productName }}
+                <span
+                  style="
+                    padding: 0px 2px;
+                    border: 1px dotted;
+                    border-radius: 2px;
+                  "
+                >
+                  {{ product.productPackSize }}
+                </span></mat-card-title
               >
-                {{ product.productCategory }}
-              </p>
-              <p
-                style="
-                  /* border: 1px solid rgb(7, 194, 100); */
-                  background-color: #bd53ff;
-                  padding: 1px 4px;
-                  border-radius: 4px;
-                  color: white;
-                  font-size: smaller;
-                  /* color: #bd53ff; */
-                  /* color: rgb(7, 194, 100); */
-                "
-              >
-                {{ product.productPackSize }}
+
+              <p style="font-size: smaller">
+                <span
+                  style="
+                    border: 1px solid rgb(7, 194, 100);
+                    padding: 0px 4px;
+                    border-radius: 12px;
+                  "
+                  >{{ product.productCategory }}</span
+                >
+                &nbsp;{{ product.supplierName }}
               </p>
             </div>
+
             <mat-card-content style="margin: 0; padding: 0 !important">
               <div
                 style="
@@ -104,18 +89,16 @@
                   align-items: center;
                 "
               >
-                <p style="font-size: medium; font-weight: bold; color: #e90064">
+                <p style="font-size: medium">
                   {{
                     product.mrp | currency : "BDT" : "symbol-narrow" : "1.0-2"
                   }}
                 </p>
                 <p
                   style="
-                    /* background-color: #08f3a9; */
                     padding: 1px 4px;
                     border-radius: 4px;
-                    /* color: #000; */
-                    color: gray;
+                    /* color: gray; */
                     font-size: smaller;
                   "
                 >
@@ -133,7 +116,7 @@
               "
             >
               <button
-                class="btn btn-1"
+                class="btn"
                 style="margin: 0 !important"
                 mat-raised-button
                 color="accent"
