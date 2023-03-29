@@ -21,7 +21,8 @@
   top: -1.5em;
 }
 
-:host ::ng-deep
+:host
+  ::ng-deep
   .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
   .mat-form-field-label {
   transform: translateY(-1.1em) scale(0.75);
@@ -43,6 +44,7 @@
   padding: 0.2rem;
   border: 0px;
   border-radius: 0.2rem;
+  font-size: medium !important;
   // color: ghostwhite;
   cursor: pointer;
 }
@@ -55,57 +57,24 @@
   flex: 1 1 auto;
   text-align: center;
   text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
   color: white;
-  // /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
-  box-shadow: 0 0 20px #eee;
-  border-radius: 8px;
-}
-
-.btn:hover {
-  background-position: right center; /* change the direction of the change here */
+  border-radius: 4px;
 }
 
 .btn-2 {
-  background-image: linear-gradient(
-    to right,
-    #fc00ff 0%,
-    #00dbde 51%,
-    #fc00ff 100%
-  );
+  background-color: crimson;
 }
 .btn-3 {
-  background-image: linear-gradient(
-    to right,
-    #006aff 0%,
-    #4edfff 51%,
-    #2480ff 100%
-  );
+  background-color: #006aff;
 }
 .btn-4 {
-  background-image: linear-gradient(
-    to right,
-    #175491 0%,
-    #43cea2 51%,
-    #185a9d 100%
-  );
+  background-color: #1ca0ac;
 }
 .btn-5 {
-  background-image: linear-gradient(
-    to right,
-    #ee0979 0%,
-    #ff8c3a 51%,
-    #ee0979 100%
-  );
+  background-color: #ee0979;
 }
 .btn-6 {
-  background-image: linear-gradient(
-    to right,
-    #103c00 0%,
-    #52c234 51%,
-    #103c00 100%
-  );
+  background-color: #309813;
 }
 
 // #24C6DC 0%, #514A9D  51%, #24C6DC  100%
