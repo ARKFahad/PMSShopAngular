@@ -37,17 +37,14 @@
     <div *ngIf="hasProductsLoaded == false" style="margin-bottom: 0">
       <app-catalog-skeleton [showImage]="showImage"></app-catalog-skeleton>
     </div>
-    <div
-      class="container d-flex justify-content-center"
-      *ngIf="hasProductsLoaded == true && products"
-    >
+    <div *ngIf="hasProductsLoaded == true && products">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2">
         <div
           *ngFor="let product of products"
           class="col"
           style="border-radius: 5px"
         >
-          <mat-card style="min-width: 150px; min-height: 150px">
+          <mat-card style="min-height: 150px">
             <div style="min-height: 100px">
               <mat-card-title
                 style="
