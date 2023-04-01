@@ -34,7 +34,7 @@
           style="
             margin: 4px;
             padding: 2px 8px;
-            background: rgba(176, 224, 230, 0.244);
+            background: rgba(40, 40, 40, 0.1);
             border-radius: 4px;
           "
         >
@@ -46,7 +46,7 @@
               class="icon-btn"
               *ngIf="item.quantity >= 1"
               (click)="removeItem(item.productId)"
-              style="color: red"
+              style="color: crimson"
               >delete</mat-icon
             >
           </div>
@@ -70,12 +70,14 @@
                 <mat-icon
                   class="icon-btn"
                   *ngIf="item.quantity >= 1"
+                  style="color: crimson"
                   matPrefix
                   (click)="
                     reduceQuantity(item.productId, item.productStockQuantity)
                   "
-                  >indeterminate_check_box</mat-icon
                 >
+                  <i class="fa fa-arrow-down"></i>
+                </mat-icon>
                 <mat-form-field class="qty-form-field" appearance="outline">
                   <mat-label>Qty</mat-label>
                   <input
@@ -95,8 +97,10 @@
                   (click)="
                     increaseQuantity(item.productId, item.productStockQuantity)
                   "
-                  >add_box</mat-icon
                 >
+                  <i class="fas fa-arrow-up"></i>
+                  <!-- north -->
+                </mat-icon>
               </div>
             </div>
             <div class="col-3">Total: ৳{{ item.total }}</div>
@@ -175,7 +179,7 @@
             style="
               display: inline-block;
               padding: 3px 6px;
-              background-color: #e21818;
+              background-color: crimson;
               color: white;
               font-weight: 600;
               letter-spacing: 1px;
@@ -192,7 +196,6 @@
       <button
         class="btn btn-2"
         mat-raised-button
-        color="warn"
         (click)="openClearCartDialog()"
       >
         <span
@@ -203,7 +206,6 @@
       <button
         class="btn btn-3"
         mat-raised-button
-        color="info"
         (click)="openDiscountDialog()"
       >
         <span>
@@ -214,7 +216,6 @@
       <button
         class="btn btn-4"
         mat-raised-button
-        color="info"
         (click)="openDiscountPercentageDialog()"
       >
         <span>
@@ -226,7 +227,6 @@
       <button
         class="btn btn-5"
         mat-raised-button
-        color="info"
         (click)="openCreditSaleCheckoutDialog()"
       >
         <span>
@@ -237,7 +237,6 @@
       <button
         class="btn btn-6"
         mat-raised-button
-        color="accent"
         (click)="openCheckoutDialog()"
       >
         <span>

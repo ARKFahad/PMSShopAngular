@@ -13,36 +13,7 @@ mat-chip {
   flex: 1 1 auto;
   text-align: center;
   text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
   color: white;
-  // /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
-  box-shadow: 0 0 20px #eee;
-  border-radius: 8px;
+  font-size: smaller;
+  border-radius: 4px;
 }
-
-.btn:hover {
-  background-position: right center; /* change the direction of the change here */
-}
-
-.btn-1 {
-  background-image: linear-gradient(
-    to right,
-    #bd53ff 0%,
-    #84fab0 51%,
-    #bd53ff 100%
-  );
-}
-
-.btn-6 {
-  background-image: linear-gradient(
-    to right,
-    #ee0979 0%,
-    #ff6a00 51%,
-    #ee0979 100%
-  );
-}
-
-// #b846ff 0%, #3fff85  51%, #bd53ff  100%
-// #fc00ff 0%, #00dbde  51%, #fc00ff  100%
-// #ef32d9 0%, #89fffd  51%, #ef32d9  100%
