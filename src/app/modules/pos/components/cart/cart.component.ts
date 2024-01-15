@@ -55,14 +55,17 @@ export class CartComponent implements OnInit {
   }
   increaseQuantity(productId, productStockQuantity) {
     this.discount = 0;
+    this.discountInPercentage = 0;
     this.cartService.increase(productId, productStockQuantity);
   }
   reduceQuantity(productId, productStockQuantity) {
     this.discount = 0;
+    this.discountInPercentage = 0;
     this.cartService.reduce(productId, productStockQuantity);
   }
   removeItem(productId) {
     this.discount = 0;
+    this.discountInPercentage = 0;
     this.cartService.remove(productId);
   }
   isCustomerSelected() {
@@ -101,6 +104,7 @@ export class CartComponent implements OnInit {
     var checkOutData = new CheckOut();
     checkOutData.cartId = this.cartService.cartId;
     checkOutData.total = this.total;
+    checkOutData.discountInPercentage = this.discountInPercentage;
     checkOutData.discount = this.discount;
     checkOutData.netTotal = this.netTotalAfterRound;
     checkOutData.paymentAmount = 0;
@@ -130,6 +134,7 @@ export class CartComponent implements OnInit {
       if (result) {
         this.cartService.clearCart();
         this.discount = 0;
+        this.discountInPercentage = 0;
       }
     });
   }
@@ -168,6 +173,7 @@ export class CartComponent implements OnInit {
     //  var num2 = item?.price.match(/^\d+(\.\d+)*$/);
     // if (num2 === null)  item.price=""
     this.discount = 0;
+    this.discountInPercentage = 0;
     this.cartService.onChangeQuantity(item);
   }
 }
