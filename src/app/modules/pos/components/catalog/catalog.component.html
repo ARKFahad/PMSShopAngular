@@ -1,10 +1,11 @@
 <div class="catalog-card" style="margin-bottom: 0">
   <div>
-    <div class="row">
-      <div class="col-md-9 col-xl-9">
-        <form>
+    <form (submit)="doFilter()">
+      <div class="row">
+        <div class="col-md-6 col-xl-6">
           <mat-form-field appearance="outline">
             <mat-label>Filter Products</mat-label>
+            <!-- (keyup)="doFilter()" -->
             <input
               matInput
               autocomplete="off"
@@ -12,28 +13,39 @@
               [(ngModel)]="productRequestModel.keyword"
               name="keyword"
               type="text"
-              (keyup)="doFilter()"
               autocomplete="off"
             />
           </mat-form-field>
-        </form>
-      </div>
-
-      <div
-        class="col-sm-12 col-md-3 col-lg-3 col-xl-3"
-        style="text-align: right"
-      >
-        <button
-          mat-raised-button
-          color="primary"
-          style="margin-bottom: 30px !important; width: 100%"
-          (click)="resetFilter()"
+        </div>
+        <div
+          class="col-sm-12 col-md-3 col-lg-3 col-xl-3"
+          style="text-align: right"
         >
-          <i style="margin-right: 10px" class="fa fa-redo"></i>
-          Reload
-        </button>
+          <button
+            style="margin-bottom: 30px !important; width: 100%"
+            mat-raised-button
+            color="primary"
+            type="submit"
+          >
+            Search
+          </button>
+        </div>
+        <div
+          class="col-sm-12 col-md-3 col-lg-3 col-xl-3"
+          style="text-align: right"
+        >
+          <button
+            mat-raised-button
+            color="accent"
+            style="margin-bottom: 30px !important; width: 100%"
+            (click)="resetFilter()"
+          >
+            <i style="margin-right: 10px" class="fa fa-redo"></i>
+            Reload
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
     <div *ngIf="hasProductsLoaded == false" style="margin-bottom: 0">
       <app-catalog-skeleton [showImage]="showImage"></app-catalog-skeleton>
     </div>
