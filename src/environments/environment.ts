@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://103.91.229.10:91/api/',
+  //apiUrl: 'http://103.91.229.10:91/api/',
   //apiUrl: 'https://demo1api.butsbd.com/api/'
+  apiUrl: 'http://localhost:7066/api/',
 };
 
 /*
