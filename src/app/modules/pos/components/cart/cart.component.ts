@@ -41,17 +41,22 @@ export class CartComponent implements OnInit {
       data.forEach((arg) => {
         this.total += arg.total;
       });
-      this.netTotal = this.total - this.discount;
-      this.netTotalAfterRound = Math.round(this.netTotal);
+      this.updateNetTotal();
     });
   }
+
   loadCurrentCart() {
+    this.resetCartSummary();
     this.cartItems = this.cartService.loadCurrentCart();
     this.cartItems.forEach((arg) => {
       this.total += arg.total;
     });
-    this.netTotal = this.total;
-    this.netTotalAfterRound = Math.round(this.total);
+    this.updateNetTotal();
+  }
+
+  updateNetTotal() {
+    this.netTotal = this.total - this.discount;
+    this.netTotalAfterRound = Math.round(this.netTotal);
   }
   increaseQuantity(productId, productStockQuantity) {
     this.discount = 0;
@@ -97,7 +102,11 @@ export class CartComponent implements OnInit {
     const dialogRef = this.dialog.open(CheckoutComponent, {
       data: checkOutData,
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.resetCartSummary();
+      }
+    });
   }
 
   openCreditSaleCheckoutDialog() {
@@ -123,7 +132,11 @@ export class CartComponent implements OnInit {
       const dialogRef = this.dialog.open(CreditSaleCheckoutComponent, {
         data: checkOutData,
       });
-      dialogRef.afterClosed().subscribe((result) => {});
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.resetCartSummary();
+        }
+      });
     }
   }
   openClearCartDialog() {
@@ -132,9 +145,11 @@ export class CartComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.cartService.clearCart();
-        this.discount = 0;
-        this.discountInPercentage = 0;
+        this.cartService.clearCartItemsOnly(); // clears products but keeps customer & cartId
+        this.resetCartSummary();
+        this.toastr.success('Cart successfully cleared.', '', {
+          positionClass: 'toast-top-right',
+        });
       }
     });
   }
@@ -175,5 +190,15 @@ export class CartComponent implements OnInit {
     this.discount = 0;
     this.discountInPercentage = 0;
     this.cartService.onChangeQuantity(item);
+  }
+
+  resetCartSummary() {
+    this.total = 0;
+    this.netTotal = 0;
+    this.netTotalAfterRound = 0;
+    this.discount = 0;
+    this.discountInPercentage = 0;
+    this.paymentAmount = 0;
+    this.dueAmount = 0;
   }
 }

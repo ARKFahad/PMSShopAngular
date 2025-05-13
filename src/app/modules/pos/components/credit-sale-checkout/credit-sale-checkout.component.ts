@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { environment } from 'src/environments/environment';
@@ -18,6 +22,7 @@ import { CheckoutService } from '../../services/checkout.service';
 export class CreditSaleCheckoutComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: CheckOut,
+    private dialogRef: MatDialogRef<CreditSaleCheckoutComponent>,
     public dialog: MatDialog,
     public cartService: CartService,
     private toastr: ToastrService,
@@ -70,12 +75,14 @@ export class CreditSaleCheckoutComponent implements OnInit {
       .submitOrder(this.data)
       .subscribe((result) => {
         this.toastr.info(result.message);
-        this.cartService.getCustomerCart(this.customer.id);
-        this.dialog.closeAll();
+        // this.cartService.getCustomerCart(this.customer.id);
+        this.cartService.clearCartItemsOnly();
+        // this.dialog.closeAll();
+        this.dialogRef.close(true);
         this.checkOutService
           .getInvoiceReport(result.saleId)
           .subscribe((res) => {
-            location.reload();
+            // location.reload();
             const fileURL = URL.createObjectURL(res);
             window.open(fileURL, '_blank');
           });

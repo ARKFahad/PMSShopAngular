@@ -1,5 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { CartItem } from '../../models/cart';
 import { CheckOut } from '../../models/checkOut';
@@ -15,6 +19,7 @@ import { CheckoutService } from '../../services/checkout.service';
 export class CheckoutComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: CheckOut,
+    private dialogRef: MatDialogRef<CheckoutComponent>,
     public dialog: MatDialog,
     public cartService: CartService,
     private toastr: ToastrService,
@@ -50,12 +55,14 @@ export class CheckoutComponent implements OnInit {
       .submitOrder(this.data)
       .subscribe((result) => {
         this.toastr.info(result.message);
-        this.cartService.getCustomerCart(this.customer.id);
-        this.dialog.closeAll();
+        //this.cartService.getCustomerCart(this.customer.id);
+        this.cartService.clearCartItemsOnly();
+        // this.dialog.closeAll();
+        this.dialogRef.close(true);
         this.checkOutService
           .getInvoiceReport(result.saleId)
           .subscribe((res) => {
-            location.reload();
+            // location.reload();
             const fileURL = URL.createObjectURL(res);
             window.open(fileURL, '_blank');
           });

@@ -23,20 +23,6 @@ export class CartService {
     new BehaviorSubject<boolean>(false);
   constructor(private toastr: ToastrService) {}
 
-  clearCart() {
-    // var cartId = this.cartId;
-    this.cartItems = [];
-    this.cartItems$.next(this.cartItems);
-  }
-  reset() {
-    this.cartItems = [];
-    this.cartItems$.next(this.cartItems);
-    this.currentCustomer = null;
-    this.currentCustomer$.next(this.currentCustomer);
-    this.cartId = null;
-    this.isCartInvalid.next(true);
-  }
-
   add(product: any, quantity: number = 1) {
     if (!this.cartId) {
       return;
@@ -169,5 +155,20 @@ export class CartService {
     this.cartId = 'fdfdfdf';
     this.isCartLoading.next(false);
     this.cartItems$.next(this.calculate(this.cartItems));
+  }
+
+  clearCartItemsOnly() {
+    // var cartId = this.cartId;
+    this.cartItems = [];
+    this.cartItems$.next(this.cartItems);
+  }
+  
+  reset() {
+    this.cartItems = [];
+    this.cartItems$.next(this.cartItems);
+    this.currentCustomer = null;
+    this.currentCustomer$.next(this.currentCustomer);
+    this.cartId = null;
+    this.isCartInvalid.next(true);
   }
 }
