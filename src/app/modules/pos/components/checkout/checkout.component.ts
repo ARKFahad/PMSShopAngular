@@ -62,7 +62,7 @@ export class CheckoutComponent implements OnInit {
         this.checkOutService
           .getInvoiceReport(result.saleId)
           .subscribe((res) => {
-            // location.reload();
+            location.reload();
             const fileURL = URL.createObjectURL(res);
             window.open(fileURL, '_blank');
           });
