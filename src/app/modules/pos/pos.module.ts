@@ -25,6 +25,7 @@ import { CashPaymentComponent } from './components/cash-payment/cash-payment.com
 import { CreditSaleCheckoutComponent } from './components/credit-sale-checkout/credit-sale-checkout.component';
 import { DiscountPercentageComponent } from './components/discount-percentage/discount-percentage.component';
 import { CatalogNewComponent } from './components/catalog-new/catalog-new.component';
+import { CardSaleCheckoutComponent } from './components/card-sale-checkout/card-sale-checkout.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CatalogNewComponent } from './components/catalog-new/catalog-new.compon
     CashPaymentComponent,
     CreditSaleCheckoutComponent,
     DiscountPercentageComponent,
+    CardSaleCheckoutComponent,
   ],
   imports: [
     CommonModule,
