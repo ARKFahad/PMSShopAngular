@@ -10,6 +10,8 @@ import { CheckoutComponent } from '../checkout/checkout.component';
 import { CreditSaleCheckoutComponent } from '../credit-sale-checkout/credit-sale-checkout.component';
 import { DiscountPercentageComponent } from '../discount-percentage/discount-percentage.component';
 import { DiscountComponent } from '../discount/discount.component';
+import { CardSaleCheckoutComponent } from '../card-sale-checkout/card-sale-checkout.component';
+import { paymentMethods } from 'src/app/core/constants/constants';
 
 @Component({
   selector: 'app-cart',
@@ -95,6 +97,7 @@ export class CartComponent implements OnInit {
     checkOutData.discountInPercentage = this.discountInPercentage;
     checkOutData.discount = this.discount;
     checkOutData.netTotal = this.netTotalAfterRound;
+    checkOutData.paymentMethodId = paymentMethods.cash_Id; // default payment method
     checkOutData.paymentAmount = this.netTotalAfterRound;
     checkOutData.dueAmount = 0;
     checkOutData.cartItems = this.cartItems;
@@ -139,6 +142,29 @@ export class CartComponent implements OnInit {
       });
     }
   }
+
+  openCardSaleCheckoutDialog() {
+    var checkOutData = new CheckOut();
+    checkOutData.cartId = this.cartService.cartId;
+    checkOutData.total = this.total;
+    checkOutData.discountInPercentage = this.discountInPercentage;
+    checkOutData.discount = this.discount;
+    checkOutData.netTotal = this.netTotalAfterRound;
+    checkOutData.paymentMethodId = paymentMethods?.pubali_bank_Id;
+    checkOutData.paymentAmount = this.netTotalAfterRound;
+    checkOutData.dueAmount = 0;
+    checkOutData.cartItems = this.cartItems;
+    checkOutData.customerId = this.cartService.currentCustomer.id;
+    const dialogRef = this.dialog.open(CardSaleCheckoutComponent, {
+      data: checkOutData,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.resetCartSummary();
+      }
+    });
+  }
+
   openClearCartDialog() {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: 'Do you want to clear this cart?',
