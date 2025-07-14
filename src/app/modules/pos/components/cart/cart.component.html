@@ -225,6 +225,17 @@
       </button>
 
       <button
+        class="btn btn-7"
+        mat-raised-button
+        (click)="openCardSaleCheckoutDialog()"
+      >
+        <span>
+          <i style="margin-right: 12px" class="fa fa-money-bill"></i>
+          Card
+        </span>
+      </button>
+
+      <button
         class="btn btn-5"
         mat-raised-button
         (click)="openCreditSaleCheckoutDialog()"
@@ -242,16 +253,6 @@
         <span>
           <i style="margin-right: 10px" class="fa fa-money-bill"></i>
           Cash
-        </span>
-      </button>
-      <button
-        class="btn btn-7"
-        mat-raised-button
-        (click)="openCardSaleCheckoutDialog()"
-      >
-        <span>
-          <i style="margin-right: 10px" class="fa fa-money-bill"></i>
-          Card
         </span>
       </button>
     </mat-card-actions>
