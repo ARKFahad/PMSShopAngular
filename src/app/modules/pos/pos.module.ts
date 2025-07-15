@@ -5,7 +5,7 @@ import { PosRoutingModule } from './pos-routing.module';
 import { MaterialModule } from 'src/app/core/material/material.module';
 import { PosComponent } from './pos.component';
 import { CustomerComponent } from './components/customer/customer.component';
-import { CatalogComponent } from './components/catalog/catalog.component';
+// import { CatalogComponent } from './components/catalog/catalog.component';
 import { CustomerSelectionComponent } from './components/customer-selection/customer-selection.component';
 
 import { SharedModule } from 'src/app/core/shared/shared.module';
@@ -24,12 +24,15 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { CashPaymentComponent } from './components/cash-payment/cash-payment.component';
 import { CreditSaleCheckoutComponent } from './components/credit-sale-checkout/credit-sale-checkout.component';
 import { DiscountPercentageComponent } from './components/discount-percentage/discount-percentage.component';
+import { CatalogNewComponent } from './components/catalog-new/catalog-new.component';
+import { CardSaleCheckoutComponent } from './components/card-sale-checkout/card-sale-checkout.component';
 
 @NgModule({
   declarations: [
     PosComponent,
     CustomerComponent,
-    CatalogComponent,
+    // CatalogComponent,
+    CatalogNewComponent,
     CustomerSelectionComponent,
     CartComponent,
     PosToolbarComponent,
@@ -43,6 +46,7 @@ import { DiscountPercentageComponent } from './components/discount-percentage/di
     CashPaymentComponent,
     CreditSaleCheckoutComponent,
     DiscountPercentageComponent,
+    CardSaleCheckoutComponent,
   ],
   imports: [
     CommonModule,

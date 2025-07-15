@@ -6,6 +6,7 @@ export class CheckOut {
   discountInPercentage:number;
   discount:number;
   netTotal:number;
+  paymentMethodId: string;
   paymentAmount:number;
   dueAmount:number;
   receivedAmount:number;

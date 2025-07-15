@@ -22,7 +22,7 @@
         <!-- (click)="openCustomerSelectionForm()" -->
         <a (click)="openCustomerSelectionForm()" *ngIf="customer" color="accent"  mat-raised-button style="font-weight:lighter;font-size: small; border-radius: 4px 0px 0px 4px!important;" translate>
             <span style="margin-right: 10px;" class="fas fa-user-circle"></span>
-            {{cartService.currentCustomer.name}}
+            {{cartService?.currentCustomer?.name}}
         </a>
 
         <button mat-icon-button (click)="cart.toggle()">

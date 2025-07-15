@@ -10,6 +10,8 @@ import { CheckoutComponent } from '../checkout/checkout.component';
 import { CreditSaleCheckoutComponent } from '../credit-sale-checkout/credit-sale-checkout.component';
 import { DiscountPercentageComponent } from '../discount-percentage/discount-percentage.component';
 import { DiscountComponent } from '../discount/discount.component';
+import { CardSaleCheckoutComponent } from '../card-sale-checkout/card-sale-checkout.component';
+import { paymentMethods } from 'src/app/core/constants/constants';
 
 @Component({
   selector: 'app-cart',
@@ -41,17 +43,22 @@ export class CartComponent implements OnInit {
       data.forEach((arg) => {
         this.total += arg.total;
       });
-      this.netTotal = this.total - this.discount;
-      this.netTotalAfterRound = Math.round(this.netTotal);
+      this.updateNetTotal();
     });
   }
+
   loadCurrentCart() {
+    this.resetCartSummary();
     this.cartItems = this.cartService.loadCurrentCart();
     this.cartItems.forEach((arg) => {
       this.total += arg.total;
     });
-    this.netTotal = this.total;
-    this.netTotalAfterRound = Math.round(this.total);
+    this.updateNetTotal();
+  }
+
+  updateNetTotal() {
+    this.netTotal = this.total - this.discount;
+    this.netTotalAfterRound = Math.round(this.netTotal);
   }
   increaseQuantity(productId, productStockQuantity) {
     this.discount = 0;
@@ -90,6 +97,7 @@ export class CartComponent implements OnInit {
     checkOutData.discountInPercentage = this.discountInPercentage;
     checkOutData.discount = this.discount;
     checkOutData.netTotal = this.netTotalAfterRound;
+    checkOutData.paymentMethodId = paymentMethods.cash_Id; // default payment method
     checkOutData.paymentAmount = this.netTotalAfterRound;
     checkOutData.dueAmount = 0;
     checkOutData.cartItems = this.cartItems;
@@ -97,7 +105,11 @@ export class CartComponent implements OnInit {
     const dialogRef = this.dialog.open(CheckoutComponent, {
       data: checkOutData,
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.resetCartSummary();
+      }
+    });
   }
 
   openCreditSaleCheckoutDialog() {
@@ -123,18 +135,47 @@ export class CartComponent implements OnInit {
       const dialogRef = this.dialog.open(CreditSaleCheckoutComponent, {
         data: checkOutData,
       });
-      dialogRef.afterClosed().subscribe((result) => {});
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.resetCartSummary();
+        }
+      });
     }
   }
+
+  openCardSaleCheckoutDialog() {
+    var checkOutData = new CheckOut();
+    checkOutData.cartId = this.cartService.cartId;
+    checkOutData.total = this.total;
+    checkOutData.discountInPercentage = this.discountInPercentage;
+    checkOutData.discount = this.discount;
+    checkOutData.netTotal = this.netTotalAfterRound;
+    checkOutData.paymentMethodId = paymentMethods?.pubali_bank_Id;
+    checkOutData.paymentAmount = this.netTotalAfterRound;
+    checkOutData.dueAmount = 0;
+    checkOutData.cartItems = this.cartItems;
+    checkOutData.customerId = this.cartService.currentCustomer.id;
+    const dialogRef = this.dialog.open(CardSaleCheckoutComponent, {
+      data: checkOutData,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.resetCartSummary();
+      }
+    });
+  }
+
   openClearCartDialog() {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: 'Do you want to clear this cart?',
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.cartService.clearCart();
-        this.discount = 0;
-        this.discountInPercentage = 0;
+        this.cartService.clearCartItemsOnly(); // clears products but keeps customer & cartId
+        this.resetCartSummary();
+        this.toastr.success('Cart successfully cleared.', '', {
+          positionClass: 'toast-top-right',
+        });
       }
     });
   }
@@ -175,5 +216,15 @@ export class CartComponent implements OnInit {
     this.discount = 0;
     this.discountInPercentage = 0;
     this.cartService.onChangeQuantity(item);
+  }
+
+  resetCartSummary() {
+    this.total = 0;
+    this.netTotal = 0;
+    this.netTotalAfterRound = 0;
+    this.discount = 0;
+    this.discountInPercentage = 0;
+    this.paymentAmount = 0;
+    this.dueAmount = 0;
   }
 }
