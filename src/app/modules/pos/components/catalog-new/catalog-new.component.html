@@ -23,6 +23,7 @@
             mat-raised-button
             color="accent"
             style="margin-bottom: 30px !important; width: 100%"
+            type="button"
             (click)="resetFilter()"
           >
             <i style="margin-right: 10px" class="fa fa-redo"></i>
@@ -31,10 +32,32 @@
         </div>
       </div>
     </form>
-    <div *ngIf="!hasProductsLoaded" style="margin-bottom: 0">
+
+    <!-- Offline message -->
+    <div
+      *ngIf="!isOnline"
+      class="alert alert-warning"
+      style="padding: 5px; font-size: 13px"
+    >
+      You are offline. Search will retry when connection is back.
+    </div>
+
+    <!-- Error message -->
+    <div
+      *ngIf="isError && isOnline"
+      class="alert alert-danger"
+      style="padding: 5px; font-size: 13px"
+    >
+      {{ errorMessage }}
+    </div>
+
+    <!-- Skeleton -->
+    <div *ngIf="!hasProductsLoaded && !isError" style="margin-bottom: 0">
       <app-catalog-skeleton [showImage]="showImage"></app-catalog-skeleton>
     </div>
-    <div *ngIf="hasProductsLoaded && products">
+
+    <!-- Product list -->
+    <div *ngIf="hasProductsLoaded && !isError">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2">
         <div
           *ngFor="let product of products"
